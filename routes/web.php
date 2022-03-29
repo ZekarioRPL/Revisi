@@ -18,5 +18,15 @@ Route::get('/', function () {
 });
 
 Route::get('/Beranda', function () {
-    return view('Dashboard.DashboardMain');
+    return view('Karyawan.dashboard');
+});
+
+Route::get('/profil', function () {
+    return view('Karyawan.profil');
+});
+Route::get('/absensi', function () {
+    return view('Karyawan.absensi');
+});
+Route::get('/gaji', function () {
+    return view('Karyawan.gaji');
 });
