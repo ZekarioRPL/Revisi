@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/Beranda', function () {
-    return view('Dashboard.Dashboard');
+    return view('Dashboard.DashboardMain');
 });
