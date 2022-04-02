@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +15,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Karyawan.dashboard');
+    return view('Karyawan.dashboard', [
+        'title' => "Dashboard"
+    ]);
 });
 
-Route::get('/Beranda', function () {
-    return view('Karyawan.dashboard');
-});
+// Route::get('/profil', function () {
+//     return view('Karyawan.profil');
+// });
+Route::resource('/profils', ProfilController::class);
 
-Route::get('/profil', function () {
-    return view('Karyawan.profil');
-});
 Route::get('/absensi', function () {
-    return view('Karyawan.absensi');
+    return view('Karyawan.absensi',[
+        'title' => "Absensi"
+    ]);
 });
 Route::get('/gaji', function () {
-    return view('Karyawan.gaji');
+    return view('Karyawan.gaji', [
+        'title' => "Gaji"
+    ]);
 });
