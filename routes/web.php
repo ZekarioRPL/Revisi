@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,5 @@ Route::get('/gaji', function () {
         'title' => "Gaji"
     ]);
 });
+Route::resource('/login', LoginController::class);
+Route::resource('/registrasi', RegisterController::class);
