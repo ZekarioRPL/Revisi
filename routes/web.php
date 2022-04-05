@@ -37,5 +37,8 @@ Route::get('/gaji', function () {
         'title' => "Gaji"
     ]);
 });
-Route::resource('/login', LoginController::class);
+Route::resource('/login', LoginController::class)->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
 Route::resource('/registrasi', RegisterController::class);

@@ -6,7 +6,14 @@
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      @auth
+      <form action="/logout" method="post">
+        @csrf
+        <button type="submit" class="nav-link px-3 bg-dark text-light" style="border : 0px" >Sign out</button>
+      </form>
+      @else
+      <a class="nav-link px-3" href="/login">Sign in</a>
+      @endauth
     </div>
   </div>
 </header>
