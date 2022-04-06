@@ -20,16 +20,6 @@ Route::get('/', function () {
         'title' => "Dashboard"
     ]);
 });
-Route::get('/percobaan', function () {
-    return view('Karyawan.percobaan', [
-        'title' => "percobaan"
-    ]);
-});
-Route::get('/percobaan2', function () {
-    return view('Karyawan.percobaan2', [
-        'title' => "percobaan2"
-    ]);
-});
 Route::get('/kehadiran', function () {
     return view('Karyawan.absensi.kehadiran', [
         'title' => "Kehadiran"

@@ -79,6 +79,8 @@
         </div>
       </div>
       
+  @include('karyawan.layouts.pageheader')
+
                   <!-- Main content -->
                   <div class="content">
                 <div class="row justify-content-center">

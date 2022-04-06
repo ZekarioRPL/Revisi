@@ -55,18 +55,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/percobaan">
-              <span data-feather="bar-chart-2"></span>
-              #1
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/percobaan2">
-              <span data-feather="layers"></span>
-              #2
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="layers"></span>
               Berita
