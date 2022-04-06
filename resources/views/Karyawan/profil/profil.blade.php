@@ -1,9 +1,8 @@
 @extends('Dashboard.DashboardMain')
 
 @section('container')
-<button type="button" class="btn btn-primary">Tambah</button>
-<a href="#" class="btn btn-primary mb-4">Edit</a>
-
+<a href="/profils/{{ $game->id}}/edit" class="btn btn-primary mb-4">Edit</a>
+<p>{{ $game->id}}</p>
 <div class="card mb-3 p-3" style="max-width: 90%;">
   <div class="row g-0">
     <div class="col-md-5 p-3">

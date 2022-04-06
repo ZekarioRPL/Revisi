@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\PresensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +20,50 @@ Route::get('/', function () {
         'title' => "Dashboard"
     ]);
 });
+Route::get('/percobaan', function () {
+    return view('Karyawan.percobaan', [
+        'title' => "percobaan"
+    ]);
+});
+Route::get('/percobaan2', function () {
+    return view('Karyawan.percobaan2', [
+        'title' => "percobaan2"
+    ]);
+});
+Route::get('/kehadiran', function () {
+    return view('Karyawan.absensi.kehadiran', [
+        'title' => "Kehadiran"
+    ]);
+});
+Route::get('/profile_perusahaan', function () {
+    return view('Karyawan.ProfilePerusahaan', [
+        'title' => "Profile Perusahaan"
+    ]);
+});
+Route::get('/edit', function () {
+    return view('Karyawan.profil.editprofile', [
+        'title' => "Edit Profile"
+    ]);
+});
+Route::get('/list_karyawan', function () {
+    return view('Karyawan.listkaryawan', [
+        'title' => "List Karyawan"
+    ]);
+});
 
 // Route::get('/profil', function () {
 //     return view('Karyawan.profil');
 // });
 Route::resource('/profils', ProfilController::class);
 
-Route::get('/absensi', function () {
-    return view('Karyawan.absensi',[
-        'title' => "Absensi"
-    ]);
-});
+// Route::get('/absensi', function () {
+//     return view('Karyawan.absensi',[
+//         'title' => "Absensi"
+//     ]);
+// });
+Route::resource('/absensi', PresensiController::class);
+Route::get('/keluar', [PresensiController::class, 'keluar']);
+
 Route::get('/gaji', function () {
     return view('Karyawan.gaji', [
         'title' => "Gaji"

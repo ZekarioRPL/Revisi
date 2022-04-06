@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profil;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
@@ -15,7 +15,8 @@ class ProfilController extends Controller
     public function index()
     {
         return view('Karyawan.profil.profil', [
-            'title' => "Profil"
+            'title' => "Profil",
+            'game' => User::where('id', 1)->first()
         ]);
     }
 
@@ -26,10 +27,10 @@ class ProfilController extends Controller
      */
     public function create()
     {
-        return view('karyawan.profil.defaultprofile', [
-            "title" => 'Profil',
-            'profils' => Profil::where('user_id', auth()->user()->id)->get()
-        ]);
+        // return view('karyawan.profil.defaultprofile', [
+        //     "title" => 'Profil',
+        //     'profils' => Profil::where('user_id', auth()->user()->id)->get()
+        // ]);
     }
 
     /**
@@ -49,7 +50,7 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function show(Profil $profil)
+    public function show(User $User)
     {
         //
     }
@@ -60,10 +61,11 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profil $profil)
+    public function edit(User $User)
     {
-        return view('karyawan.profil.editprofile', [
-            "title" => 'Edit Profile'
+        return view('karyawan.dashboard', [
+            "title" => 'Edit Profile',
+            "user" => $User
         ]);
     }
 
@@ -74,9 +76,27 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profil $profil)
+    public function update(Request $request, User $User)
     {
-        
+        $rules = [
+            'name' => 'required|max:255',
+            'jenis_Kelamin' => 'required|max:255',
+            'alamat' => 'required|max:255',
+            'username' => 'required|max:255'
+        ];
+
+        $bebassaja = $request->validate($rules);
+
+        // str::limit untuk membatasi | eps 19|10.20| laravel search : string helper
+        // ----------------------jika tidak ada---------------------------------ini-----maka akan default '....'
+
+        // search laravel = update | insert
+        User::where('id', 1)
+                ->update($bebassaja);
+
+
+        // kembalikan ke halaman post
+        return redirect('/profils')->with('bisa', 'Selamat Data Telah Di Edit!!');
     }
 
     /**
@@ -85,7 +105,7 @@ class ProfilController extends Controller
      * @param  \App\Models\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profil $profil)
+    public function destroy(User $User)
     {
         //
     }

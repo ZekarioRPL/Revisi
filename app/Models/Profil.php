@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profil extends Model
 {
-    use HasFactory;
+    public $table = "project-akhir";
 }
