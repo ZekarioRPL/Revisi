@@ -8,17 +8,46 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/profile_perusahaan">
+              <span data-feather="home"></span>
+              Profile Perusahaan
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/profils">
               <span data-feather="users"></span>
               Profil
             </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="/absensi">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <span data-feather="file"></span>
               Absensi
             </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="/absensi">
+                  <span data-feather="file"></span>
+                  Absen Masuk
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/keluar">
+                  <span data-feather="file"></span>
+                  Absen Keluar
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="/kehadiran">
+                  <span data-feather="file"></span>
+                  Kehadiran
+                </a>
+              </li>
+            </ul>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/gaji">
               <span data-feather="shopping-cart"></span>
@@ -27,14 +56,14 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2"></span>
-              Reports
+              <span data-feather="layers"></span>
+              Berita
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/list_karyawan">
               <span data-feather="layers"></span>
-              Integrations
+              List Karyawan
             </a>
           </li>
         </ul>
