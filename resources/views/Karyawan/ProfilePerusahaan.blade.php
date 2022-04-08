@@ -137,6 +137,11 @@
                         <div class="user-Location">
                           <i class="ti-location-pin"></i>Indonesia, Ponorogo</div>
                         <div class="user-job-title">Product Designer</div>
+                        @can('admin')
+                        <div class="user-job-title">
+                          <a href="#" class="btn btn-primary m-b-10">Edit</a>
+                        </div>
+                        @endcan
                         <div class="ratings">
                           <h4>Ratings</h4>
                           <div class="rating-star">

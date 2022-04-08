@@ -28,6 +28,14 @@ class PresensiController extends Controller
             'title' => "Absensi Keluar"
         ]);
     }
+    public function kehadiran()
+    {
+        return view('Karyawan.absensi.kehadiran',[
+            'title' => "Kehadiran",
+            'kehadirans' => presensi::where('user_id', auth()->user()->id)->get()
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +53,8 @@ class PresensiController extends Controller
      * @param  \App\Http\Requests\StorepresensiRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorepresensiRequest $request)
+    // public function store(StorepresensiRequest $request)
+    public function store(Request $request)
     {
         $timezone = 'Asia/Makassar'; 
         $date = new DateTime('now', new DateTimeZone($timezone)); 
@@ -118,7 +127,7 @@ class PresensiController extends Controller
 
         if ($presensi->jamkeluar == ""){
             $presensi->update($dt);
-            return redirect('presensi-keluar');
+            return redirect('/');
         }else{
             dd("sudah ada");
         }

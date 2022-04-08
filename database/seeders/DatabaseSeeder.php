@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'name' => 'sefdani',
+            'level' => 'admin',
             'jenis_kelamin' => "laki-laki",
             "alamat" => "Ponorogo",
             'username' => 'sefdani',
