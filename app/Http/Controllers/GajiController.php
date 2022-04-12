@@ -15,7 +15,9 @@ class GajiController extends Controller
      */
     public function index()
     {
-        //
+        return view('Karyawan.gaji.gaji', [
+            'title' => "Gaji"
+        ]);
     }
 
     /**

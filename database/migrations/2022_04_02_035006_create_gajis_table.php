@@ -14,12 +14,12 @@ class CreateGajisTable extends Migration
     public function up()
     {
         Schema::create('gajis', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->foreignId('user_id');
             $table->date('tanggal')->nullable();
-            $table->string('kondisi');
-            $table->string('code');
-            $table->string('jumlah');
+            $table->string('status');
+            $table->string('gaji');
+            $table->string('image')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

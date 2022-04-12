@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\GajiController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,11 +57,8 @@ Route::resource('/profils', ProfilController::class);
 Route::resource('/absensi', PresensiController::class);
 Route::get('/keluar', [PresensiController::class, 'keluar']);
 
-Route::get('/gaji', function () {
-    return view('Karyawan.gaji', [
-        'title' => "Gaji"
-    ]);
-});
+Route::resource('/gaji', GajiController::class);
+
 Route::resource('/login', LoginController::class)->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);

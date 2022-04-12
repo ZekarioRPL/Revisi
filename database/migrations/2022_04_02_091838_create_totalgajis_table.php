@@ -17,8 +17,7 @@ class CreateTotalgajisTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id');
             $table->integer('gaji_id');
-            $table->integer('jumlah');
-            $table->integer('jumlah_harga');
+            $table->integer('jumlah_gaji');
             $table->timestamps();
         });
     }
