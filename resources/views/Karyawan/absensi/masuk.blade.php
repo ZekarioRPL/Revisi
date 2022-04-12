@@ -87,8 +87,8 @@
                     <div class="card card-info card-outline">
                         <div class="card-header">Presensi Masuk</div>
                         <div class="card-body">
-                            <form action="#" method="post">
-                                {{ csrf_field() }}
+                            <form action="/simpan-masuk" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <center>
                                         <label id="clock" style="font-size: 100px; color: #0A77DE; -webkit-text-stroke: 3px #00ACFE;

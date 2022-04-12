@@ -29,7 +29,7 @@
                     <div class="col-lg-8 p-r-0 title-margin-right">
                         <div class="page-header">
                             <div class="page-title">
-                                <h1>Hello, <span>Welcome Here</span></h1>
+                                <h1>Hello, <span>Welcome Here, {{ auth()->user()->name }}</span></h1>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <div class="page-header">
                             <div class="page-title">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Menu Gaji</div>
                                         <div class="stat-digit">
-                                            <a href="#" class="btn btn-success" role="button" data-bs-toggle="button">GAJI</a>
+                                            <a href="/gaji" class="btn btn-success">GAJI</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                         <div class="stat-content dib">
                                             <div class="stat-text">Menu Profile</div>
                                             <div class="stat-digit">
-                                                <a href="#" class="btn btn-Primary" role="button" data-bs-toggle="button">Profile</a>
+                                                <a href="/profils" class="btn btn-Primary" >Profile</a>
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Absen Masuk</div>
                                         <div class="stat-digit">
-                                            <a href="#" class="btn btn-warning" role="button" data-bs-toggle="button">Masuk</a>
+                                            <a href="/absensi" class="btn btn-warning" >Masuk</a>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Absen Keluar</div>
                                         <div class="stat-digit">
-                                            <a href="#" class="btn btn-Danger" role="button" data-bs-toggle="button">Keluar</a>
+                                            <a href="/keluar" class="btn btn-Danger" >Keluar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -169,104 +169,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach( $kehadirans as $kehadiran)
                                                 <tr>
-                                                    <td>Class Test</td>
-                                                    <td>Mathmatics</td>
-                                                    <td>
-                                                        4.00
-                                                    </td>
-                                                    <td>
-                                                        95.00
-                                                    </td>
-                                                    <td>
-                                                        100
-                                                    </td>
-                                                    <td>20/04/2017</td>
+                                                    <td>{{ $kehadiran->user->name }}</td>
+                                                    <td>{{ $kehadiran->user_id }}</td>
+                                                    <td>{{ $kehadiran->jammasuk }}</td>
+                                                    <td>{{ $kehadiran->jamkeluar }}</td>
+                                                    <td>{{ $kehadiran->jamkerja }}</td>
+                                                    <td>{{ $kehadiran->tgl }}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Class Test</td>
-                                                    <td>Mathmatics</td>
-                                                    <td>
-                                                        4.00
-                                                    </td>
-                                                    <td>
-                                                        95.00
-                                                    </td>
-                                                    <td>
-                                                        100
-                                                    </td>
-                                                    <td>20/04/2017</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Class Test</td>
-                                                    <td>English</td>
-                                                    <td>
-                                                        4.00
-                                                    </td>
-                                                    <td>
-                                                        95.00
-                                                    </td>
-                                                    <td>
-                                                        100
-                                                    </td>
-                                                    <td>20/04/2017</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Class Test</td>
-                                                    <td>Bangla</td>
-                                                    <td>
-                                                        4.00
-                                                    </td>
-                                                    <td>
-                                                        95.00
-                                                    </td>
-                                                    <td>
-                                                        100
-                                                    </td>
-                                                    <td>20/04/2017</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Class Test</td>
-                                                    <td>Mathmatics</td>
-                                                    <td>
-                                                        4.00
-                                                    </td>
-                                                    <td>
-                                                        95.00
-                                                    </td>
-                                                    <td>
-                                                        100
-                                                    </td>
-                                                    <td>20/04/2017</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Class Test</td>
-                                                    <td>English</td>
-                                                    <td>
-                                                        4.00
-                                                    </td>
-                                                    <td>
-                                                        95.00
-                                                    </td>
-                                                    <td>
-                                                        100
-                                                    </td>
-                                                    <td>20/04/2017</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Class Test</td>
-                                                    <td>Mathmatics</td>
-                                                    <td>
-                                                        4.00
-                                                    </td>
-                                                    <td>
-                                                        95.00
-                                                    </td>
-                                                    <td>
-                                                        100
-                                                    </td>
-                                                    <td>20/04/2017</td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

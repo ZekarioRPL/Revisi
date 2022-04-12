@@ -87,8 +87,8 @@
                     <div class="card card-info card-outline">
                         <div class="card-header">Presensi Keluar</div>
                         <div class="card-body">
-                            <form action="#" method="post">
-                                {{ csrf_field() }}
+                            <form action="/presensi_pulang" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <center>
                                         <label id="clock" style="font-size: 100px; color: #659980; -webkit-text-stroke: 3px #02C39A;
