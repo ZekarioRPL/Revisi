@@ -17,7 +17,7 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [DashboardController::class, 'index'])->name('login')->middleware('auth');
+Route::get('/', [DashboardController::class, 'index'])->name('login');
 Route::get('/profile_perusahaan', function () {
     return view('Karyawan.ProfilePerusahaan', [
         'title' => "Profile Perusahaan"
@@ -38,6 +38,8 @@ Route::get('/list_karyawan', function () {
 //     return view('Karyawan.profil');
 // });
 Route::resource('/profils', ProfilController::class)->middleware('auth');
+
+Route::post('/update', [ProfilController::class, 'update']);
 
 // Route::get('/absensi', function () {
 //     return view('Karyawan.absensi',[
