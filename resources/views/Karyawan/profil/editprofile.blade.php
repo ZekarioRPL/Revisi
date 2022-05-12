@@ -57,7 +57,14 @@
                                           <div class="form-group row">
                                               <label class="col-lg-4 col-form-label" for="val-image">Image <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
-                                                  <input type="file" class="form-control @error('image') is-invalid @enderror" id="val-image" name="image" placeholder="Enter a username..">
+                                                  <input type="hidden" name="oldImage" value="{{ auth()->user()->image }}">
+                                                  @if (auth()->user()->image)
+                                                  <img src="{{ asset('storage/' . auth()->user()->image) }}" class="img-preview img-fluid mb-3 col-sm-4 d-block">
+                                                  @else
+                                                  <img class="img-preview img-fluid mb-3 col-sm-4">
+                                                  @endif
+
+                                                  <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" onchange="previewImage()">
 
                                                   @error('image')
                                                     <div class="invalid-feedback">
@@ -188,5 +195,22 @@
     <script src="assets/js/lib/form-validation/jquery.validate-init.js"></script>
     <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
     <!-- scripit init-->
+
+    {{-- Our Javascript  --}}
+    <script>
+        function previewImage(){
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 <!-- /end - javascript -->
 @endsection

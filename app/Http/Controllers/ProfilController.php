@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -90,6 +91,9 @@ class ProfilController extends Controller
     	$user->name = $request->name;
     	$user->email = $request->email;
         if($request->file('image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
     	$user->image = $request->file('image')->store('post-image');
         }
     	$user->jenis_kelamin = $request->jenis_kelamin;
