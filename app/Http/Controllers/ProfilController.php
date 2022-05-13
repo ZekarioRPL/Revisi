@@ -83,7 +83,11 @@ class ProfilController extends Controller
     {
         $this->validate($request, [
             'password' => 'confirmed',
-            'image' => 'image|file|max:2048'
+            'image' => 'image|file|max:2048',
+            'name' => 'max:255',
+            'jenis_Kelamin' => 'max:255',
+            'alamat' => 'max:255',
+            'username' => 'max:255'
         ]);
         
         $user = User::where('id', Auth::user()->id)->first();

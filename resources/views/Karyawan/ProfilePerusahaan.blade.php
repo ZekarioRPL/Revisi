@@ -51,7 +51,12 @@
     </div>
 </div>
 <!-- /end - #### -->
-
+@if ($message = Session::get('bisa'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Selamat! </strong>{{ $message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
 <div class="row">
                         <div class="col-lg-12">
                             <div class="card nestable-cart">
@@ -81,6 +86,7 @@
           <!-- /# column -->
         </div>
         <!-- /# row -->
+        
         <section id="main-content">
           <div class="row">
             <div class="col-lg-12">
@@ -90,7 +96,7 @@
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="user-photo m-b-30">
-                          <img class="img-fluid" src="assets/images/user-profile.jpg" alt="" />
+                          <img class="img-fluid" src="{{ asset('storage/' . $data->image) }}" alt="" />
                         </div>
                         <div class="user-work">
                           <h4>Media</h4>
@@ -133,13 +139,13 @@
                         </div> -->
                       </div>
                       <div class="col-lg-8">
-                        <div class="user-profile-name">PT PERUSAHAAN</div>
+                        <div class="user-profile-name">{{ $data->nama_perusahaan }}</div>
                         <div class="user-Location">
                           <i class="ti-location-pin"></i>Indonesia, Ponorogo</div>
-                        <div class="user-job-title">Product Designer</div>
+                        <div class="user-job-title">{{ $data->bidang_perusahaan }}</div>
                         @can('admin')
                         <div class="user-job-title">
-                          <a href="#" class="btn btn-primary m-b-10">Edit</a>
+                          <a href="/edit/profil-perusahaan" class="btn btn-primary m-b-10">Edit</a>
                         </div>
                         @endcan
                         <div class="ratings">
@@ -169,15 +175,15 @@
                                 <h4>Contact information</h4>
                                 <div class="address-content">
                                   <span class="contact-title">Contact :</span>
-                                  <span class="mail-address">087789987789</span>
+                                  <span class="mail-address">{{ $data->kontak }}</span>
                                 </div>
                                 <div class="address-content">
                                   <span class="contact-title">Address :</span>
-                                  <span class="mail-address">123, Rajar Goli, South Mugda</span>
+                                  <span class="mail-address">{{ $data->alamat }}</span>
                                 </div>
                                 <div class="email-content">
                                   <span class="contact-title">Email :</span>
-                                  <span class="contact-email">hello@Admin Board.com</span>
+                                  <span class="contact-email">{{ $data->email }}</span>
                                 </div>
                               </div>
                               <div class="basic-information">

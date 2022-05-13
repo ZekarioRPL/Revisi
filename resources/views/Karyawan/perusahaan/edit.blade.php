@@ -52,14 +52,14 @@
                           <div class="card">
                               <div class="card-body">
                                   <div class="form-validation">
-                                      <form class="form-valide" action="/update" method="post" enctype="multipart/form-data">
+                                      <form class="form-valide" action="/edit/profil-perusahaan" method="post" enctype="multipart/form-data">
                                         @csrf
-                                          <div class="form-group row">
+                                          <div class="form-group row mb-2">
                                               <label class="col-lg-4 col-form-label" for="val-image">Image <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
-                                                  <input type="hidden" name="oldImage" value="{{ auth()->user()->image }}">
-                                                  @if (auth()->user()->image)
-                                                  <img src="{{ asset('storage/' . auth()->user()->image) }}" class="img-preview img-fluid mb-3 col-sm-4 d-block">
+                                                  <input type="hidden" name="oldImage">
+                                                  @if ($data->image)
+                                                  <img src="{{ asset('storage/' . $data->image) }}" class="img-preview img-fluid mb-3 col-sm-4 d-block">
                                                   @else
                                                   <img class="img-preview img-fluid mb-3 col-sm-4">
                                                   @endif
@@ -73,79 +73,47 @@
                                                  @enderror
                                               </div>
                                           </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span></label>
+                                          <div class="form-group row mb-2">
+                                              <label class="col-lg-4 col-form-label" for="val-name">Nama Perusahaan <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
-                                                  <input type="text" class="form-control" id="val-username" name="username" placeholder="Enter a username.." value="{{ auth()->user()->username }}">
+                                                  <input type="text" class="form-control @error('name') is-invalid @enderror" id="val-name" name="nama_perusahaan" placeholder="Enter a username.." value="{{ $data->nama_perusahaan }}">
+                                                  @error('name')
+                                                    <div class="invalid-feedback">
+                                                     {{ $message }}
+                                                     </div>
+                                                 @enderror
                                               </div>
                                           </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-name">Name <span class="text-danger">*</span></label>
+                                          <div class="form-group row mb-2">
+                                              <label class="col-lg-4 col-form-label" for="kontak">Kontak Perusahaan <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
-                                                  <input type="text" class="form-control" id="val-name" name="name" placeholder="Enter a username.." value="{{ auth()->user()->name }}">
+                                                  <input type="text" class="form-control @error('kontak') is-invalid @enderror" id="kontak" name="kontak" placeholder="Enter your kontak.." value="{{ $data->kontak }}">
+                                                  @error('kontak')
+                                                    <div class="invalid-feedback">
+                                                     {{ $message }}
+                                                     </div>
+                                                 @enderror
                                               </div>
                                           </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span></label>
+                                          <div class="form-group row mb-2">
+                                              <label class="col-lg-4 col-form-label" for="val-email">Email Perusahaan <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
-                                                  <input type="text" class="form-control" id="val-email" name="email" placeholder="Your valid email.." value="{{ auth()->user()->email }}">
+                                                  <input type="text" class="form-control @error('email') is-invalid @enderror" id="val-email" name="email" placeholder="Your valid email.." value="{{ $data->email }}">
                                               </div>
                                           </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span></label>
+                                          <div class="form-group row mb-2">
+                                              <label class="col-lg-4 col-form-label" for="val-suggestions">Alamat Perusahaan <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
-                                                  <input type="password" class="form-control" id="val-password" name="password" placeholder="Choose a safe one..">
+                                                  <textarea class="form-control @error('alamat') is-invalid @enderror" id="val-suggestions" name="alamat" rows="5" placeholder="Dimana alamatmu?">{{ $data->alamat }}</textarea>
                                               </div>
                                           </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span></label>
-                                              <div class="col-lg-8">
-                                                  <input type="password" class="form-control" id="val-confirm-password" name="confirm-password" placeholder="..and confirm it!">
-                                              </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-select2">Gender <span class="text-danger">*</span></label>
-                                              <div class="col-lg-8">
-                                                  {{-- @if (auth()->user()->jenis_kelamin)
-                                                  <input type="text" class="form-control" id="val-select2" name="jenis_kelamin" placeholder="Enter a Gender.." value="{{ auth()->user()->jenis_kelamin }}">
-                                                  @else --}}
-                                                  <select class="js-select2 form-control" id="val-select2" name="jenis_kelamin" style="width: 100%;" data-placeholder="Choose one.." >
-                                                      <option>Select!</option>
-                                                      <option value="Laki-Laki">Laki-Laki</option>
-                                                      <option value="Perempuan">Perempuan</option>
-                                                  </select>                                                      
-                                                  {{-- @endif --}}
-                                              </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-suggestions">Alamat <span class="text-danger">*</span></label>
-                                              <div class="col-lg-8">
-                                                  <textarea class="form-control" id="val-suggestions" name="alamat" rows="5" placeholder="Dimana alamatmu?">{{ auth()->user()->alamat }}</textarea>
-                                              </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-jabatan">Jabatan <span class="text-danger">*</span></label>
+                                          <div class="form-group row mb-2">
+                                              <label class="col-lg-4 col-form-label" for="bidang_perusahaan">Bidang Perusahaan <span class="text-danger">*</span></label>
                                               <div class="col-lg-6">
-                                                {{-- @if (auth()->user()->jabatan)
-                                                <input type="text" class="form-control" id="val-jabatan" name="jabatan" placeholder="Enter a Jabatan.." value="{{ auth()->user()->jabatan }}">
-                                                @else                                                     --}}
-                                                <select class="form-control" id="val-skill" name="jabatan">
-                                                    <option>Please select</option>
-                                                    <option value="Manager">Manager</option>
-                                                    <option value="Web Developer">Web Developer</option>
-                                                    <option value="Customer Service">Customer Service</option>
-                                                    <option value="Pemberanu">Pemberani</option>
-                                                </select>
-                                                {{-- @endif --}}
+                                                <input type="text" class="form-control @error('bidang_perusahaan') is-invalid @enderror" id="bidang_perusahaan" name="bidang_perusahaan" placeholder="Enter a Jabatan.." value="{{ $data->bidang_perusahaan }}">
                                               </div>
                                           </div>
-                                          <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="val-currency">Tanggal Lahir <span class="text-danger">*</span></label>
-                                              <div class="col-lg-6">
-                                                  <input type="date" class="form-control" id="val-currency" name="tanggal_lahir" value="{{ auth()->user()->tanggal_lahir }}">
-                                              </div>
-                                        
-                                          <div class="form-group row">
+                                          <div class="form-group row mb-2">
                                               <label class="col-lg-4 col-form-label"><a data-toggle="modal" data-target="#modal-terms" href="#">Terms &amp; Conditions</a> <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
                                                   <label class="css-control css-control-primary css-checkbox" for="val-terms">
@@ -154,7 +122,7 @@
                                                   </label>
                                               </div>
                                           </div>
-                                          <div class="form-group row">
+                                          <div class="form-group row mb-2">
                                               <div class="col-lg-8 ml-auto">
                                                   <button type="submit" class="btn btn-primary">Submit</button>
                                               </div>

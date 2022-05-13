@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\ProfilPerusahaan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,13 @@ class DatabaseSeeder extends Seeder
             'username' => 'sefdani',
             'email' => 'sefdani@gmail.com',
             'password' => bcrypt('sefdani')
+        ]);
+        ProfilPerusahaan::create([
+            'nama_perusahaan' => 'Default',
+            'kontak' => 'Default',
+            'alamat' => "Default",
+            'bidang_perusahaan' => 'Default',
+            'email' => 'default@example.com',
         ]);
     }
 }
