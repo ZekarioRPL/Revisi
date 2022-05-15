@@ -19,10 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('level');
             $table->foreignId('shift_id')->nullable();
             $table->string('jenis_kelamin')->nullable();
+            $table->string('jabatan')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat')->nullable();
             $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\ProfilPerusahaan;
 use App\Models\shift;
 use App\Models\status;
 use Illuminate\Database\Seeder;
@@ -26,6 +27,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('sefdani')
         ]);
 
+        ProfilPerusahaan::create([
+            'nama_perusahaan' => 'Default',
+            'kontak' => 'Default',
+            'alamat' => "Default",
+            'bidang_perusahaan' => 'Default',
+            'email' => 'default@example.com',
+        ]);
+      
         status::create([
             'present_name' => 'Hadir'
         ]);
