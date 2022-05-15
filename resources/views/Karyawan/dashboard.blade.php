@@ -29,7 +29,7 @@
                     <div class="col-lg-8 p-r-0 title-margin-right">
                         <div class="page-header">
                             <div class="page-title">
-                                <h1>Hello, <span>Welcome Here, {{ auth()->user()->name }}</span></h1>
+                                <h1>Hello, <span>Welcome Here, <strong>{{ auth()->user()->name }}</strong></span></h1>
                             </div>
                         </div>
                     </div>
@@ -76,6 +76,7 @@
                                     </div>
                                 </div>
                         </div>
+                        @can('karyawan')
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="stat-widget-one">
@@ -103,6 +104,22 @@
                                 </div>
                             </div>
                         </div>
+                        @endcan
+                        @can('admin')
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-link color-dark border-dark"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Data Absen</div>
+                                        <div class="stat-digit">
+                                            <a href="/absen" class="btn btn-dark" >Absensi</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endcan
                     </div>
 
                     <div class="row">
@@ -163,20 +180,23 @@
                                                     <th>Day</th>
                                                     <th>Status</th>
                                                     <th>Waktu Masuk</th>
-                                                    <th>Waktu Keluar</th>
-                                                    <th>Waktu Kerja</th>
-                                                    <th>Date</th>
+                                                    <th>Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach( $kehadirans as $kehadiran)
                                                 <tr>
                                                     <td>{{ $kehadiran->user->name }}</td>
-                                                    <td>{{ $kehadiran->user_id }}</td>
-                                                    <td>{{ $kehadiran->jammasuk }}</td>
-                                                    <td>{{ $kehadiran->jamkeluar }}</td>
-                                                    <td>{{ $kehadiran->jamkerja }}</td>
-                                                    <td>{{ $kehadiran->tgl }}</td>
+                                                    <td>
+                                                    @if( $kehadiran->jammasuk >= $shift->time_in)
+                                                            <span class="badge badge-warning">Hadir</span>
+                                                            <span class="badge badge-danger">Telat</span>
+                                                        @else
+                                                            <span class="badge badge-success">Hadir</span>
+                                                    @endif
+                                                    </td>
+                                                    <td><span class="badge badge-primary">{{ $kehadiran->jammasuk }}</span></td>
+                                                    <td>{{ $kehadiran->updated_at->diffForHumans() }}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -197,122 +217,6 @@
                             <!-- /# card -->
                         </div>
                         <!-- # card -->
-                        <div class="col-lg-8">
-                            <div class="card">
-                                <div class="card-title pr">
-                                    <h4>Gaji</h4>
-
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table student-data-table m-t-20">
-                                            <thead>
-                                                <tr>
-                                                    <th><label><input type="checkbox" value=""></label>ID</th>
-                                                    <th>Date</th>
-                                                    <th>Jumlah</th>
-                                                    <th>Status</th>
-                                                    <th>Code</th>
-                                                    <th>Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-primary">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-warning">Pending</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-primary">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-danger">Due</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-primary">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- /# card -->
                     </div>
 

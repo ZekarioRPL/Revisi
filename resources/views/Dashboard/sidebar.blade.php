@@ -48,25 +48,19 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers"></span>
-              Berita
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/list_karyawan">
+            <a class="nav-link" href="/karyawan">
               <span data-feather="layers"></span>
               List Karyawan
             </a>
           </li>
         </ul>
-        @endcan
-          <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="/gaji">
               <span data-feather="shopping-cart"></span>
               Gaji
             </a>
           </li>
+        @endcan
 
         @can('admin')
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -83,27 +77,27 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/pembayaran">
               <span data-feather="file-text"></span>
-              Pembayaran Gaji
+              Pembayaran
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/gaji">
+              <span data-feather="shopping-cart"></span>
+              Gaji
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/absen">
               <span data-feather="file-text"></span>
               Absen
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/karyawan">
               <span data-feather="file-text"></span>
               Karyawan
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Update Berita
             </a>
           </li>
         </ul>

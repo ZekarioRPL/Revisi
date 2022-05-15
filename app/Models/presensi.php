@@ -11,9 +11,17 @@ class presensi extends Model
     protected $table = "presensis";
     protected $primaryKey = "id";
     protected $fillable = [
-        'id','user_id','tgl','jammasuk','jamkeluar','jamkerja'];
+        'id','latitude','longitude','user_id','tgl','jammasuk','jamkeluar','jamkerja','status'];
 
     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function shift()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function status()
     {
         return $this->belongsTo(User::class);
     }

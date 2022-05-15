@@ -59,7 +59,7 @@
                                         <table id="row-select" class="display table table-borderd table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Day</th>
+                                                    <th>Name</th>
                                                     <th>Status</th>
                                                     <th>Waktu Masuk</th>
                                                     <th>Waktu Keluar</th>
@@ -69,14 +69,16 @@
                                             </thead>
 
                                             <tbody>
+                                                @foreach( $listkaryawans as $listkaryawan)
                                                 <tr>
-                                                    <td>Tiger Nixon</td>
+                                                    <td>senin</td>
                                                     <td>System Architect</td>
                                                     <td>Edinburgh</td>
                                                     <td>61</td>
                                                     <td>2011/04/25</td>
                                                     <td>$320,800</td>
                                                 </tr>
+                                                @endforeach
                                                 <tr>
                                                     <td>Garrett Winters</td>
                                                     <td>Accountant</td>

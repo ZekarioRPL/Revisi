@@ -52,61 +52,26 @@
                           <div class="card">
                               <div class="card-body">
                                   <div class="form-validation">
-                                    <?php
-                                    function passAcak($panjang)
-                                    {
-                                    $karakter = '';
-                                    $karakter .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; // karakter alfabet
-                                    $karakter .= '1234567890'; // karakter numerik
-                                    //  $karakter .= '@#$^*()_+=/?'; // karakter simbol
-                                    
-                                    $string = '';
-                                    for ($i=0; $i < $panjang; $i++) { 
-                                    $pos = rand(0, strlen($karakter)-1);
-                                    $string .= $karakter{$pos};
-                                    }
-                                    return $string;
-                                    }
-                                    ?>
                                       <!-- form -->
-                                      <form class="form-valide" action="/gaji" method="post">
+                                      <form class="form-valide" action="/shifts" method="post">
                                       @csrf
 
                                             <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="karyawan_id">Nama Karyawan <span class="text-danger">*</span></label>
-                                              <div class="col-lg-8">
-                                                  <select class="js-nama_Karyawan form-control" id="karyawan_id" name="karyawan_id" style="width: 100%;" data-placeholder="Choose one.." required>
-                                                      <option></option>
-                                                      @foreach( $karyawans as $karyawan)
-                                                        <option value="{{ $karyawan->id }}">{{ $karyawan->name }}</option>
-                                                      @endforeach
-                                                  </select>
-                                              </div>
+                                                <label class="col-lg-4 col-form-label" for="shift_name">Name Shift<span class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control" id="shift_name" name="shift_name" required placeholder="Enter a Name Shift..">
+                                                </div>
                                             </div>
-                                            <!-- <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="bulan">Gaji Bulan <span class="text-danger">*</span></label>
-                                              <div class="col-lg-8">
-                                                  <select class="js-nama_bulan form-control" id="bulan" name="bulan" style="width: 100%;" data-placeholder="Choose one.." required>
-                                                      <option></option>                                  
-                                                      <option value="januari">Januari</option>
-                                                      <option value="februari">Februari</option>
-                                                      <option value="maret">Maret</option>
-                                                      <option value="april">April</option>
-                                                      <option value="mei">Mei</option>
-                                                      <option value="juni">Juni</option>
-                                                      <option value="juli">Juli</option>
-                                                      <option value="agustus">Agustus</option>
-                                                      <option value="september">September</option>
-                                                      <option value="oktober">Oktober</option>
-                                                      <option value="november">November</option>
-                                                      <option value="desember">Desember</option>
-                                                  </select>
-                                              </div>
-                                            </div> -->
                                             <div class="form-group row">
-                                              <label class="col-lg-4 col-form-label" for="gaji">Gaji <span class="text-danger">*</span></label>
+                                              <label class="col-lg-4 col-form-label" for="time_in">Time in <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">
-                                                  <input type="number" class="form-control" id="gaji" name="gaji" required placeholder="Enter a gaji.. (RP.)">
+                                                  <input type="time" class="form-control" id="time_in" name="time_in" required placeholder="Enter a Time In..">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                              <label class="col-lg-4 col-form-label" for="time_out">Time_out <span class="text-danger">*</span></label>
+                                              <div class="col-lg-8">
+                                                  <input type="time" class="form-control" id="time_out" name="time_out" required placeholder="Enter a Time_out..">
                                                 </div>
                                             </div>
                                             <!-- <div class="form-group row">
@@ -115,20 +80,9 @@
                                                     <input type="text" class="form-control" id="val-bukti" name="val-bukti" placeholder="Enter a bukti.." disabled>
                                                 </div>
                                             </div> -->
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label" for="tanggal">date <span class="text-danger">*</span></label>
-                                                <div class="col-lg-8">
-                                                    <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Enter a date.." required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-lg-8">
-                                                    <input type="hidden" class="form-control" id="kode" name="kode" value="<?php echo passAcak(8);?>" required>
-                                                </div>
-                                            </div>
                                           <div class="form-group row">
                                               <div class="col-lg-8 ml-auto">
-                                                  <button type="submit" class="btn btn-primary">Order</button>
+                                                  <button type="submit" class="btn btn-primary">Tambah Shift</button>
                                               </div>
                                           </div>
 
