@@ -45,6 +45,13 @@
               </div>
             </div>
           </div>
+            @if ($message = Session::get('bisa'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Selamat! </strong>{{ $message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+          
           <!-- /# column -->
         </div>
         <!-- /# row -->
@@ -57,7 +64,11 @@
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="user-photo m-b-30">
+                          @if (auth()->user()->image)
+                          <img class="img-fluid" src="{{ asset('storage/' . auth()->user()->image) }}" alt="" />
+                          @else
                           <img class="img-fluid" src="assets/images/user-profile.jpg" alt="" />
+                          @endif
                         </div>
                         <!-- <div class="user-work">
                           <h4>work</h4>
@@ -94,8 +105,14 @@
                         </div> -->
                       </div>
                       <div class="col-lg-8">
-                        <div class="user-profile-name">john doe</div>
-                        <div class="user-job-title">Web Developer</div>
+                        <div class="user-profile-name">{{ auth()->user()->name }}</div>
+                        <div class="user-job-title">
+                          @if (auth()->user()->jabatan)
+                                      {{ auth()->user()->jabatan }}
+                                    @else
+                                       <small>Tambahkan Jabatan</small> 
+                                    @endif
+                        </div>
                         <!-- <div class="ratings">
                           <h4>Ratings</h4>
                           <div class="rating-star">
@@ -123,22 +140,40 @@
                                 <h4>Contact information</h4>
                                 <div class="address-content">
                                   <span class="contact-title">Address:</span>
-                                  <span class="mail-address">123, Rajar Goli, South Mugda</span>
+                                  <span class="mail-address">
+                                    @if (auth()->user()->alamat)
+                                      {{ auth()->user()->alamat }}
+                                    @else
+                                       <small>Please input your address!</small> 
+                                    @endif
+                                  </span>
                                 </div>
                                 <div class="email-content">
                                   <span class="contact-title">Email:</span>
-                                  <span class="contact-email">hello@Admin Board.com</span>
+                                  <span class="contact-email">{{ auth()->user()->email }}</span>
                                 </div>
                               </div>
                               <div class="basic-information">
                                 <h4>Basic information</h4>
                                 <div class="birthday-content">
                                   <span class="contact-title">Birthday :</span>
-                                  <span class="birth-date">January 31, 1990 </span>
+                                  <span class="birth-date">
+                                    @if (auth()->user()->tanggal_lahir)
+                                      {{ auth()->user()->tanggal_lahir }}
+                                    @else
+                                       <small>Not Inputable!</small> 
+                                    @endif
+                                </span>
                                 </div>
                                 <div class="gender-content">
                                   <span class="contact-title">Gender :</span>
-                                  <span class="gender">Male</span>
+                                  <span class="gender">
+                                    @if (auth()->user()->jenis_kelamin)
+                                      {{ auth()->user()->jenis_kelamin }}
+                                    @else
+                                       <small>Not Inputable!</small> 
+                                    @endif
+                                  </span>
                                 </div>
                               </div>
                               <div class="basic-information">
