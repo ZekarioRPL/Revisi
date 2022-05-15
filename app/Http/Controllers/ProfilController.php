@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\shift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -21,6 +22,7 @@ class ProfilController extends Controller
             'game' => User::where('id', 1)->first()
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

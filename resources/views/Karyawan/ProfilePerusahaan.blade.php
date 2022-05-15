@@ -187,16 +187,30 @@
                                 </div>
                               </div>
                               <div class="basic-information">
-                                <h4>Operator</h4>
+                                <h4>Shift</h4>
+                                @foreach( $shifts as $shift )
                                 <div class="birthday-content">
                                   <span class="contact-title">Name Operator :</span>
-                                  <span class="birth-date">098122345678</span>
+                                  <span class="birth-date">{{ $shift->shift_name }}</span>
+                                  <form action="/shifts/{{ $shift->id }}" method="post" class="d-inline">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="badge bg-danger border-0" onclick="return confirm(' Are Yout Sure Delete ')">Delete</button>
+                                  </form>
                                 </div>
-                                <div class="gender-content">
-                                  <span class="contact-title">Name Operator :</span>
-                                  <span class="gender">098122345678</span>
+                                <div class="birthday-content">
+                                  <span class="contact-title">Time In :</span>
+                                  <span class="badge badge-success">{{ $shift->time_in }}</span>
+                                  <span class="contact-title">|| Time Out :</span>
+                                  <span class="badge badge-warning">{{ $shift->time_out }}</span>
                                 </div>
+                                @endforeach
                               </div>
+                              @can('admin')
+                              <div class="user-job-title">
+                                <a href="/shifts/create" class="btn btn-primary m-b-10">Tambah Shift</a>
+                              </div>
+                              @endcan
                             </div>
                           </div>
                         </div>

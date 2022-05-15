@@ -16,10 +16,14 @@ class CreatePresensisTable extends Migration
         Schema::create('presensis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->date("tgl");
+            $table->double('latitude')->nullable();
+            $table->double('longitude')->nullable();
+            $table->date("tgl");  
             $table->time('jammasuk')->nullable();
             $table->time('jamkeluar')->nullable();
             $table->time('jamkerja')->nullable();
+            $table->foreignId('status')->nullable();
+            $table->foreignId('shift_id')->nullable();
             $table->timestamps();
         });
     }

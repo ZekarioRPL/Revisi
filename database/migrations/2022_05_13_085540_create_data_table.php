@@ -1,10 +1,8 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateTotalgajisTable extends Migration
+class CreateDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +11,15 @@ class CreateTotalgajisTable extends Migration
      */
     public function up()
     {
-        Schema::create('totalgajis', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('user_id');
-            $table->integer('gaji_id');
-            $table->integer('jumlah_gaji');
+        Schema::create('data', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('kode')->unique();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -29,6 +27,6 @@ class CreateTotalgajisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('totalgajis');
+        Schema::dropIfExists('data');
     }
 }

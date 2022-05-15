@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTotalgajisTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateTotalgajisTable extends Migration
      */
     public function up()
     {
-        Schema::create('totalgajis', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('user_id');
-            $table->integer('gaji_id');
-            $table->integer('jumlah_gaji');
+        Schema::create('statuses', function (Blueprint $table) {
+            $table->bigIncrements('present_id');
+            $table->string('present_name')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateTotalgajisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('totalgajis');
+        Schema::dropIfExists('statuses');
     }
 }

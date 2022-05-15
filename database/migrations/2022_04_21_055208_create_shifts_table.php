@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTotalgajisTable extends Migration
+class CreateShiftsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTotalgajisTable extends Migration
      */
     public function up()
     {
-        Schema::create('totalgajis', function (Blueprint $table) {
+        Schema::create('shifts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id');
-            $table->integer('gaji_id');
-            $table->integer('jumlah_gaji');
+            $table->string('shift_name');
+            $table->time('time_in')->nullable();
+            $table->time('time_out')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateTotalgajisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('totalgajis');
+        Schema::dropIfExists('shifts');
     }
 }

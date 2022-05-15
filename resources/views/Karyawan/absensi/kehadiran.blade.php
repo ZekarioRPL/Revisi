@@ -1,5 +1,5 @@
 @extends('Dashboard.DashboardMain')
-<!-- ================= Favicon ================== -->
+    <!-- ================= Favicon ================== -->
     <!-- Standard -->
     <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
     <!-- Retina iPad Touch Icon-->
@@ -19,8 +19,27 @@
     <link href="assets/css/lib/helper.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
 @section('container')
-
-
+@if(!empty($tanggalPertama->tgl))
+<?php
+// untuk bulan
+$tanggal = $tanggalPertama->tgl;
+$mount = date('M', strtotime($tanggal));
+$mountList = array(
+    'Jan' => "Januari",
+    'Feb' => "Februari",
+    'Mar' => "Maret",
+    'Apr' => "April",
+    'May' => "Mei",
+    'Jun' => "Juni",
+    'Jul' => "Juli",
+    'Aug' => "Agustus",
+    'Sep' => "September",
+    'Oct' => "October",
+    'Nov' => "November",
+    'Dec' => "Desember"
+);
+?>
+@endif
 <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
@@ -46,73 +65,99 @@
                     <!-- /# column -->
                 </div>
                 <!-- /# row -->
-                <section id="main-content">
-                    <div class="row">
-                        <div class="col-lg-12">
+
+                <!-- content -->
+                <div class="col-lg-20">
                             <div class="card">
                                 <div class="card-title">
-                                    <h4>{{ $title }}</h4>
+                                @if(!empty($tanggalPertama->tgl))
+                                    <h4><strong><?php echo "Bulan : " . $mountList[$mount]; ?></strong> </h4>
+                                @endif
                                     
                                 </div>
-                                <div class="bootstrap-data-table-panel">
+                                <div class="card-body">
                                     <div class="table-responsive">
-                                        <table id="row-select" class="display table table-borderd table-hover" style="width:100%;">
-                                            <thead style="width:100%;">
+                                        <table class="table table-hover ">
+                                            <thead>
                                                 <tr>
                                                     <th>Day</th>
-                                                    <th>Status</th>
-                                                    <th>Waktu Masuk</th>
-                                                    <th>Waktu Keluar</th>
-                                                    <th>Waktu Kerja</th>
+                                                    <th>Jam Masuk</th>
+                                                    <th>Jam Pulang</th>
                                                     <th>Date</th>
                                                 </tr>
                                             </thead>
-                                            <tbody style="width:100%;">
+                                            <tbody>
                                                 @foreach( $kehadirans as $kehadiran)
+                                                <?php
+                                                $tanggal = $kehadiran->tgl;
+                                                $mount2 = date('M', strtotime($tanggal));
+                                                $mountList2 = array(
+                                                    'Jan' => "Januari",
+                                                    'Feb' => "Februari",
+                                                    'Mar' => "Maret",
+                                                    'Apr' => "April",
+                                                    'May' => "Mei",
+                                                    'Jun' => "Juni",
+                                                    'Jul' => "Juli",
+                                                    'Aug' => "Agustus",
+                                                    'Sep' => "September",
+                                                    'Oct' => "October",
+                                                    'Nov' => "November",
+                                                    'Dec' => "Desember"
+                                                );
+                                                $day = date('D', strtotime($tanggal));
+                                                $dayList = array(
+                                                    'Sun' => 'Minggu',
+                                                    'Mon' => 'Senin',
+                                                    'Tue' => 'Selasa',
+                                                    'Wed' => 'Rabu',
+                                                    'Thu' => 'Kamis',
+                                                    'Fri' => 'Jumat',
+                                                    'Sat' => 'Sabtu'
+                                                );
+                                                ?>
+                                                @if( $mountList2[$mount2] === $mountList[$mount])
                                                 <tr>
-                                                    <td>{{ $kehadiran->user->name }}</td>
-                                                    <td>{{ $kehadiran->user_id }}</td>
-                                                    <td>{{ $kehadiran->jammasuk }}</td>
-                                                    <td>{{ $kehadiran->jamkeluar }}</td>
-                                                    <td>{{ $kehadiran->jamkerja }}</td>
-                                                    <td>{{ $kehadiran->tgl }}</td>
+                                                    <td>
+                                                        <?php echo $dayList[$day]; ?>
+                                                        @if( $kehadiran->jammasuk >= $shift->time_in)
+                                                            <span class="badge badge-warning">Hadir</span>
+                                                            <span class="badge badge-danger">Telat</span>
+                                                        @else
+                                                            <span class="badge badge-success">Hadir</span>
+                                                        @endif
+                                                    </td>
+                                                    @if(empty($kehadiran->jammasuk)) 
+                                                        <td><span class="badge badge-primary">00:00:00</span></td>
+                                                    @else
+                                                        <td><span class="badge badge-primary">{{ $kehadiran->jammasuk }}</span></td>
+                                                    @endif
+
+                                                    @if(empty($kehadiran->jamkeluar)) 
+                                                        <td><span class="badge badge-primary">00:00:00</span></td>
+                                                    @else
+                                                        <td><span class="badge badge-primary">{{ $kehadiran->jamkeluar }}</span></td>
+                                                    @endif
+                                                    <td class="color-info">{{ $kehadiran->tgl }}</td>
                                                 </tr>
+                                                @endif
                                                 @endforeach
                                             </tbody>
-                                            <tfoot style="width:100%;">
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
-                                                </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             <!-- /# card -->
                         </div>
-                        <!-- /# column -->
-                    </div>
-                    <!-- /# row -->
+                <!-- /end-content -->
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="footer">
-                                <p>2018 © Admin Board. - <a href="#">example.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
     </div>
 
 
 <!-- javascript -->
+    
     <!-- jquery vendor -->
     <script src="assets/js/lib/jquery.min.js"></script>
     <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
@@ -122,18 +167,8 @@
     <!-- sidebar -->
     
     <!-- bootstrap -->
-
     <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
     <!-- scripit init-->
-    <script src="assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
-    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="assets/js/lib/data-table/datatables-init.js"></script>
 
 <!-- /end - javascript -->
 @endsection

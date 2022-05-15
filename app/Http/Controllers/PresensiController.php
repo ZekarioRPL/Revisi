@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use DateTimeZone;
+use App\Models\User;
+use App\Models\shift;
 use App\Models\presensi;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorepresensiRequest;
@@ -32,7 +34,24 @@ class PresensiController extends Controller
     {
         return view('Karyawan.absensi.kehadiran',[
             'title' => "Kehadiran",
-            'kehadirans' => presensi::where('user_id', auth()->user()->id)->get()
+            'kehadirans' => presensi::where('user_id', auth()->user()->id)->get(),
+            'tanggalPertama' => presensi::where('user_id', auth()->user()->id)->latest()->first(),
+            'shift' => shift::first()
+        ]);
+    }
+    public function absen()
+    {
+        return view('admin.absen',[
+            'title' => "Absen",
+            'absens' => presensi::all(),
+            'shift' => shift::first()
+        ]);
+    }
+    public function karyawan()
+    {
+        return view('admin.karyawan', [
+            'title' => "Karyawan",
+            'karyawans' => User::where('level', 'karyawan')->get()
         ]);
     }
 
@@ -70,6 +89,8 @@ class PresensiController extends Controller
         }else{
             Presensi::create([
                 'user_id' => auth()->user()->id,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
                 'tgl' => $tanggal,
                 'jammasuk' => $localtime,
             ]);

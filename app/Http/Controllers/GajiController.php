@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\gaji;
+use App\Models\User;
+use App\Models\presensi;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoregajiRequest;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Requests\UpdategajiRequest;
 
 class GajiController extends Controller
@@ -15,7 +19,64 @@ class GajiController extends Controller
      */
     public function index()
     {
-        //
+        return view('Karyawan.gaji.gaji', [
+            'title' => "Gaji",
+            'gaji_admins' => gaji::latest()->get(),
+            'gaji_karyawans' => gaji::where('karyawan_id', auth()->user()->id)->latest()->get(),
+        ]);
+    }
+    public function bayar()
+    {
+        $search = gaji::latest();
+        if (request('search')) {
+            $search->where('kode', 'like', '%' . request('search')  . '%');
+        }
+
+        return view('Karyawan.gaji.pembayaran', [
+            'title' => "Pembayaran",
+            'search' => $search->first()
+        ]);
+    }
+    public function konfirmasi(Request $request, $id)
+    {
+        
+        $gaji = gaji::where('id', $id)->first();
+        $gaji->status = 'konfimasi';
+        $gaji->update();
+
+        $request->session()->flash('bisa', 'Selamat Data Telah Ditambahkan!!');
+        // kembalikan ke halaman post
+        return redirect('/pembayaran');
+        
+    }
+    public function nominalgaji()
+    {
+        $idi = gaji::latest()->first();
+        $kehadirans = presensi::where('user_id', $idi->karyawan)->get();
+        return view('Karyawan.gaji.nominalgaji', compact('kehadirans'), [
+            'title' => "Nominal",
+            'nominal' => gaji::latest()->first(),
+            // 'karyawans' => User::where('name', gaji()->karyawan)->get(),
+            // 'kehadirans' => presensi::where('user_id', $idi)->get()
+        ]);
+    }
+    public function nominal(Request $request)
+    {
+        $gaji = gaji::where('gaji', '')->latest()->first();
+        $user->gaji = $request->gaji;
+        $user->update();
+
+        $request->session()->flash('bisa', 'Selamat Data Telah Ditambahkan!!');
+        // kembalikan ke halaman post
+        return redirect('/');
+    }
+
+    // QR
+    public function generate ($id)
+    {
+        $gaji = gaji::findOrFail($id);
+        $qrcode = QrCode::size(400)->generate($gaji->kode);
+        return view('qrcode',compact('qrcode'));
     }
 
     /**
@@ -25,7 +86,11 @@ class GajiController extends Controller
      */
     public function create()
     {
-        //
+        return view('karyawan.gaji.tambahgaji', [
+            'title' => "Tambah Gaji",
+            'karyawans' => User::where('level', 'karyawan')->get(),
+            'kehadirans' => presensi::where('user_id', auth()->user()->id)->get()
+        ]);
     }
 
     /**
@@ -34,9 +99,22 @@ class GajiController extends Controller
      * @param  \App\Http\Requests\StoregajiRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoregajiRequest $request)
+    public function store(Request $request)
     {
-        //
+        $bebassaja = $request->validate([
+            'karyawan_id' => 'required|max:255',
+            'tanggal' => 'required|max:255',
+            'gaji' => 'required|max:255',
+            'kode' => 'required|max:255|unique:gajis'
+
+        ]);
+        
+        gaji::create($bebassaja);
+
+        $request->session()->flash('bisa', 'Selamat Data Telah Ditambahkan!!');
+        // kembalikan ke halaman post
+        return redirect('/gaji');
+    
     }
 
     /**

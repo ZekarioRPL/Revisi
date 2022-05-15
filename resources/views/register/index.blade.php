@@ -29,12 +29,12 @@
                             <a href="index.html"><span>Focus</span></a>
                         </div>
                         <div class="login-form">
-                            <h4>Register</h4>
+                            <h4>Tambah Karyawan</h4>
                             <form action="/registrasi" method="post">
                             @csrf
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" class="form-control rounded-top @error('name') is-invalid @enderror" id="name" placeholder="Name" required value="{{ old('name') }}">
+                                    <input type="text" name="name" id="name" class="form-control rounded-top @error('name') is-invalid @enderror" placeholder="Name" required value="{{ old('name') }}">
                                     @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -72,10 +72,10 @@
                                     @enderror
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Tambah</button>
 
                                 <div class="register-link m-t-15 text-center">
-                                    <p>Sudah Registrasi? <a href="/login"> Login Disini</a></p>
+                                    <p>Kembali ke  <a href="/">Dashboard</a></p>
                                 </div>
                             </form>
                         </div>
