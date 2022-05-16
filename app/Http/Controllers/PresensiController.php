@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\shift;
 use App\Models\presensi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorepresensiRequest;
 use App\Http\Requests\UpdatepresensiRequest;
 
@@ -34,9 +35,9 @@ class PresensiController extends Controller
     {
         return view('Karyawan.absensi.kehadiran',[
             'title' => "Kehadiran",
-            'kehadirans' => presensi::where('user_id', auth()->user()->id)->get(),
+            'kehadirans' => presensi::where('user_id', auth()->user()->id)->latest()->get(),
             'tanggalPertama' => presensi::where('user_id', auth()->user()->id)->latest()->first(),
-            'shift' => shift::first()
+            'shift' => shift::where('id', auth()->user()->shift_id)->first()
         ]);
     }
     public function absen()
@@ -75,29 +76,33 @@ class PresensiController extends Controller
     // public function store(StorepresensiRequest $request)
     public function store(Request $request)
     {
-        $timezone = 'Asia/Makassar'; 
+        $timezone = 'Asia/Jakarta'; 
         $date = new DateTime('now', new DateTimeZone($timezone)); 
         $tanggal = $date->format('Y-m-d');
         $localtime = $date->format('H:i:s');
+        $user = user::where('id', auth()->user()->id)->first();
 
-        $presensi = Presensi::where([
-            ['user_id','=',auth()->user()->id],
-            ['tgl','=',$tanggal],
-        ])->first();
-        if ($presensi){
-            dd("sudah ada");
-        }else{
-            Presensi::create([
-                'user_id' => auth()->user()->id,
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-                'tgl' => $tanggal,
-                'jammasuk' => $localtime,
-            ]);
+        if (!empty($user->shift_id)) {
+                    $presensi = Presensi::where([
+                        ['user_id','=',auth()->user()->id],
+                        ['tgl','=',$tanggal],
+                    ])->first();
+                    if ($presensi){
+                        dd("sudah ada");
+                    }else{
+                        Presensi::create([
+                            'user_id' => auth()->user()->id,
+                            'latitude' => $request->latitude,
+                            'shift_id' =>  auth()->user()->shift_id,
+                            'longitude' => $request->longitude,
+                            'tgl' => $tanggal,
+                            'jammasuk' => $localtime,
+                        ]);
+                    }
+                    return redirect('/');
+        } else {
+            return redirect('/')->with('tidakbisa', 'Absen Belum bisa dilakukan. Mohon atur shift anda di Menu Profil');
         }
-         
-
-        return redirect('/');
     }
 
     /**

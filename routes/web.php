@@ -33,18 +33,16 @@ Route::get('/', [DashboardController::class, 'index'])->name('login')->middlewar
 Route::get('/Silakan_Login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
 
-Route::get('/edit', function () {
-    return view('Karyawan.profil.editprofile', [
-        'title' => "Edit Profile"
-    ]);
-})->middleware('auth');
+// Route::get('/edit', function () {
+    // return view('Karyawan.profil.editprofile', [
+    //     'title' => "Edit Profile"
+    // ]);
+// })->middleware('auth');
 
-// Route::get('/profil', function () {
-//     return view('Karyawan.profil');
-// });
 Route::resource('/profils', ProfilController::class)->middleware('auth');
+Route::get('/edit', [ProfilController::class, 'editprofile'])->middleware('auth');
 Route::resource('/shifts', ShiftController::class)->middleware('auth');
-route::get('/profile_perusahaan',[ShiftController::class,'index'])->middleware('auth');
+// route::get('/profile_perusahaan',[ShiftController::class,'index'])->middleware('auth');
 
 
 Route::post('/update', [ProfilController::class, 'update']);

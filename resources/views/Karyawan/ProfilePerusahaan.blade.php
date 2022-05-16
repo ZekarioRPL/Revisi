@@ -98,45 +98,6 @@
                         <div class="user-photo m-b-30">
                           <img class="img-fluid" src="{{ asset('storage/' . $data->image) }}" alt="" />
                         </div>
-                        <div class="user-work">
-                          <h4>Media</h4>
-                          <div class="work-content">
-                            <h3>WhatsApp</h3>
-                            <p>Name WhatsApp</p>
-                          </div>
-                          <div class="work-content">
-                            <h3>Website</h3>
-                            <p>Name Website</p>
-                          </div>
-                          <div class="work-content">
-                            <h3>Instagram</h3>
-                            <p>Name Instagram</p>
-                          </div>
-                          <div class="work-content">
-                            <h3>Twitter</h3>
-                            <p>Name Twitter</p>
-                          </div>
-                        </div>
-                        <!-- <div class="user-skill">
-                          <h4>Skill</h4>
-                          <ul>
-                            <li>
-                              <a href="#">Branding</a>
-                            </li>
-                            <li>
-                              <a href="#">UI/UX</a>
-                            </li>
-                            <li>
-                              <a href="#">Web Design</a>
-                            </li>
-                            <li>
-                              <a href="#">Wordpress</a>
-                            </li>
-                            <li>
-                              <a href="#">Magento</a>
-                            </li>
-                          </ul>
-                        </div> -->
                       </div>
                       <div class="col-lg-8">
                         <div class="user-profile-name">{{ $data->nama_perusahaan }}</div>
@@ -192,11 +153,13 @@
                                 <div class="birthday-content">
                                   <span class="contact-title">Name Operator :</span>
                                   <span class="birth-date">{{ $shift->shift_name }}</span>
+                                  @can('admin')
                                   <form action="/shifts/{{ $shift->id }}" method="post" class="d-inline">
                                     @method('DELETE')
                                     @csrf
                                     <button class="badge bg-danger border-0" onclick="return confirm(' Are Yout Sure Delete ')">Delete</button>
                                   </form>
+                                  @endcan
                                 </div>
                                 <div class="birthday-content">
                                   <span class="contact-title">Time In :</span>

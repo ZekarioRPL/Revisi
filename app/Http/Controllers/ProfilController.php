@@ -19,7 +19,14 @@ class ProfilController extends Controller
     {
         return view('Karyawan.profil.profil', [
             'title' => "Profil",
-            'game' => User::where('id', 1)->first()
+            'shift' => User::where('id', auth()->user()->id)->first()
+        ]);
+    }
+    public function editprofile()
+    {
+        return view('Karyawan.profil.editprofile', [
+            'title' => "Edit Profile",
+            "shifts" => shift::all()
         ]);
     }
 
@@ -69,7 +76,7 @@ class ProfilController extends Controller
     {
         return view('karyawan.dashboard', [
             "title" => 'Edit Profile',
-            "user" => $User
+            "user" => $User,
         ]);
         
     }
@@ -83,14 +90,15 @@ class ProfilController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'password' => 'confirmed',
-            'image' => 'image|file|max:2048',
-            'name' => 'max:255',
-            'jenis_Kelamin' => 'max:255',
-            'alamat' => 'max:255',
-            'username' => 'max:255'
-        ]);
+        // $this->validate($request, [
+        //     'password' => 'confirmed',
+        //     'image' => 'image|file|max:2048',
+        //     'name' => 'max:255',
+        //     'jenis_Kelamin' => 'max:255',
+        //     'alamat' => 'max:255',
+        //     'username' => 'max:255',
+        //     'shift' => 'max:255'
+        // ]);
         
         $user = User::where('id', Auth::user()->id)->first();
         $user->username = $request->username;
@@ -106,6 +114,7 @@ class ProfilController extends Controller
     	$user->alamat = $request->alamat;
         $user->tanggal_lahir = $request->tanggal_lahir;
         $user->jabatan = $request->jabatan;
+        $user->shift_id = $request->shift;
     	if(!empty($request->password))
     	{
     		$user->password = Hash::make($request->password);

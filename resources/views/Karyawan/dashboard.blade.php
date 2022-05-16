@@ -45,6 +45,12 @@
                     </div>
                     <!-- /# column -->
                 </div>
+                @if ($message = Session::get('tidakbisa'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf! </strong>{{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <!-- /# row -->
                 <section id="main-content">
                     <div class="row">
@@ -177,7 +183,7 @@
                                         <table class="table student-data-table m-t-20">
                                             <thead>
                                                 <tr>
-                                                    <th>Day</th>
+                                                    <th>Karyawan</th>
                                                     <th>Status</th>
                                                     <th>Waktu Masuk</th>
                                                     <th>Time</th>
@@ -188,12 +194,12 @@
                                                 <tr>
                                                     <td>{{ $kehadiran->user->name }}</td>
                                                     <td>
-                                                    @if( $kehadiran->jammasuk >= $shift->time_in)
+                                                    @if( $kehadiran->jammasuk >= $kehadiran->shift->time_in)
                                                             <span class="badge badge-warning">Hadir</span>
                                                             <span class="badge badge-danger">Telat</span>
                                                         @else
                                                             <span class="badge badge-success">Hadir</span>
-                                                    @endif
+                                                        @endif
                                                     </td>
                                                     <td><span class="badge badge-primary">{{ $kehadiran->jammasuk }}</span></td>
                                                     <td>{{ $kehadiran->updated_at->diffForHumans() }}</td>

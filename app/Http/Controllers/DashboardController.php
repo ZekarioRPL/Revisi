@@ -21,15 +21,6 @@ class DashboardController extends Controller
             'shift' => shift::first()
         ]);
     }
-    public function listkaryawan()
-    {
-        return view('Karyawan.listkaryawan', [
-            'title' => "List Karyawan",
-            'listkaryawans' => user::all()
-        ]);
-       }
-      else{
-        return redirect('/login');
-      }
     }
+
 }

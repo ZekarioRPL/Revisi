@@ -70,39 +70,6 @@
                           <img class="img-fluid" src="assets/images/user-profile.jpg" alt="" />
                           @endif
                         </div>
-                        <!-- <div class="user-work">
-                          <h4>work</h4>
-                          <div class="work-content">
-                            <h3>It Solution </h3>
-                            <p>123, South Mugda</p>
-                            <p>New York, 1214</p>
-                          </div>
-                          <div class="work-content">
-                            <h3>Unix</h3>
-                            <p>123, South Mugda</p>
-                            <p>New York, 1214</p>
-                          </div>
-                        </div>
-                        <div class="user-skill">
-                          <h4>Skill</h4>
-                          <ul>
-                            <li>
-                              <a href="#">Branding</a>
-                            </li>
-                            <li>
-                              <a href="#">UI/UX</a>
-                            </li>
-                            <li>
-                              <a href="#">Web Design</a>
-                            </li>
-                            <li>
-                              <a href="#">Wordpress</a>
-                            </li>
-                            <li>
-                              <a href="#">Magento</a>
-                            </li>
-                          </ul>
-                        </div> -->
                       </div>
                       <div class="col-lg-8">
                         <div class="user-profile-name">{{ auth()->user()->name }}</div>
@@ -113,21 +80,6 @@
                                        <small>Tambahkan Jabatan</small> 
                                     @endif
                         </div>
-                        <!-- <div class="ratings">
-                          <h4>Ratings</h4>
-                          <div class="rating-star">
-                            <span>8.9</span>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star"></i>
-                          </div>
-                        </div> -->
-                        <!-- <div class="user-send-message">
-                          <button class="btn btn-primary btn-addon" type="button">
-                            <i class="ti-email"></i>Send Message</button>
-                        </div> -->
                         <div class="custom-tab user-profile-tab">
                           <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active">
@@ -175,19 +127,21 @@
                                     @endif
                                   </span>
                                 </div>
+                                <div class="gender-content">
+                                  <span class="contact-title">Shift :</span>
+                                  <span class="shift">
+                                    @if (auth()->user()->shift_id)
+                                      {{ $shift->shift->shift_name }}
+                                    @else
+                                       <small>Not Inputable!</small> 
+                                    @endif
+                                  </span>
+                                </div>
                               </div>
                               <div class="basic-information">
-                                <h4>Kehadiran information</h4>
+                                <h4>Kehadiran</h4>
                                 <div class="birthday-content">
-                                  <span class="contact-title">Izin :</span>
-                                  <span class="gender">00</span>
-                                </div>
-                                <div class="gender-content">
-                                  <span class="contact-title">Sakit :</span>
-                                  <span class="gender">00</span>
-                                </div>
-                                <div class="gender-content">
-                                  <span class="contact-title">Tidak Hadir :</span>
+                                  <span class="contact-title">Hadir :</span>
                                   <span class="gender">00</span>
                                 </div>
                                 <a href="/edit" class="btn btn-primary">Edit</a>

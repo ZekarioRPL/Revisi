@@ -80,19 +80,19 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $karyawan->name }}</td>
                                                     @if(empty($karyawan->jenis_kelamin)) 
-                                                    <td>Null</td>
+                                                    <td>Not Inputable!</td>
                                                     @else
                                                     <td>{{ $karyawan->jenis_kelamin }}</td>
                                                     @endif
 
                                                     @if(empty($karyawan->tanggal_lahir)) 
-                                                    <td>Null</td>
+                                                    <td>Not Inputable!</td>
                                                     @else
                                                     <td>{{ $karyawan->tanggal_lahir }}</td>
                                                     @endif
 
                                                     @if(empty($karyawan->alamat)) 
-                                                    <td>Null</td>
+                                                    <td>Not Inputable!</td>
                                                     @else
                                                     <td>{{ $karyawan->alamat }}</td>
                                                     @endif

@@ -44,4 +44,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(gaji::class);
     }
+    public function shift()
+    {
+        return $this->belongsTo(shift::class);
+    }
 }

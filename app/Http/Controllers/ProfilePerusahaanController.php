@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\shift;
 use Illuminate\Http\Request;
 use App\Models\ProfilPerusahaan;
 
@@ -10,7 +11,8 @@ class ProfilePerusahaanController extends Controller
     public function index(){
         return view('Karyawan.ProfilePerusahaan', [
             'title' => "Profile Perusahaan",
-            'data' => ProfilPerusahaan::where('id', 1)->first()
+            'data' => ProfilPerusahaan::where('id', 1)->first(),
+            'shifts' => shift::all()
         ]);
     }
 

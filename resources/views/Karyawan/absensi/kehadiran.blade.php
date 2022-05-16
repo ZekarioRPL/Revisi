@@ -120,7 +120,7 @@ $mountList = array(
                                                 <tr>
                                                     <td>
                                                         <?php echo $dayList[$day]; ?>
-                                                        @if( $kehadiran->jammasuk >= $shift->time_in)
+                                                        @if( $kehadiran->jammasuk >= $kehadiran->shift->time_in)
                                                             <span class="badge badge-warning">Hadir</span>
                                                             <span class="badge badge-danger">Telat</span>
                                                         @else

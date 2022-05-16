@@ -130,7 +130,7 @@
                                                 <input type="text" class="form-control" id="val-jabatan" name="jabatan" placeholder="Enter a Jabatan.." value="{{ auth()->user()->jabatan }}">
                                                 @else                                                     --}}
                                                 <select class="form-control" id="val-skill" name="jabatan">
-                                                    <option>Please select</option>
+                                                    <option></option>
                                                     <option value="Manager">Manager</option>
                                                     <option value="Web Developer">Web Developer</option>
                                                     <option value="Customer Service">Customer Service</option>
@@ -144,7 +144,20 @@
                                               <div class="col-lg-6">
                                                   <input type="date" class="form-control" id="val-currency" name="tanggal_lahir" value="{{ auth()->user()->tanggal_lahir }}">
                                               </div>
-                                        
+                                            </div>
+
+                                            <div class="form-group row">
+                                              <label class="col-lg-4 col-form-label" for="shift">Pilih Shift Kerja <span class="text-danger">*</span></label>
+                                              <div class="col-lg-8">
+                                                  <select class="js-nama_Karyawan form-control" id="shift" name="shift" style="width: 100%;" data-placeholder="Choose one.." required>
+                                                      <option></option>
+                                                      @foreach( $shifts as $shift)
+                                                        <option value="{{ $shift->id }}">{{ $shift->shift_name }}</option>
+                                                      @endforeach
+                                                  </select>
+                                              </div>
+                                            </div>
+
                                           <div class="form-group row">
                                               <label class="col-lg-4 col-form-label"><a data-toggle="modal" data-target="#modal-terms" href="#">Terms &amp; Conditions</a> <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">

@@ -10,8 +10,7 @@ class presensi extends Model
     use HasFactory;
     protected $table = "presensis";
     protected $primaryKey = "id";
-    protected $fillable = [
-        'id','latitude','longitude','user_id','tgl','jammasuk','jamkeluar','jamkerja','status'];
+    protected $guarded = ['id'];
 
     public function user()
     {
@@ -19,7 +18,7 @@ class presensi extends Model
     }
     public function shift()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(shift::class);
     }
     public function status()
     {
