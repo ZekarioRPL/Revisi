@@ -109,17 +109,6 @@
                           <a href="/edit/profil-perusahaan" class="btn btn-primary m-b-10">Edit</a>
                         </div>
                         @endcan
-                        <div class="ratings">
-                          <h4>Ratings</h4>
-                          <div class="rating-star">
-                            <span>8.9</span>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star color-primary"></i>
-                            <i class="ti-star"></i>
-                          </div>
-                        </div>
                         <!-- <div class="user-send-message">
                           <button class="btn btn-primary btn-addon" type="button">
                             <i class="ti-email"></i>Send Message</button>

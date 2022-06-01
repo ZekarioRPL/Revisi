@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use DateTimeZone;
 use App\Models\User;
+use App\Models\ProfilPerusahaan;
 use App\Models\shift;
 use App\Models\presensi;
 use Illuminate\Http\Request;
@@ -22,13 +23,15 @@ class PresensiController extends Controller
     public function index()
     {
         return view('Karyawan.absensi.masuk',[
-            'title' => "Absensi Masuk"
+            'title' => "Absensi Masuk",
+            'data' => ProfilPerusahaan::where('id', 1)->first()
         ]);
     }
     public function keluar()
     {
         return view('Karyawan.absensi.keluar',[
-            'title' => "Absensi Keluar"
+            'title' => "Absensi Keluar",
+            'data' => ProfilPerusahaan::where('id', 1)->first()
         ]);
     }
     public function kehadiran()
@@ -37,7 +40,8 @@ class PresensiController extends Controller
             'title' => "Kehadiran",
             'kehadirans' => presensi::where('user_id', auth()->user()->id)->latest()->get(),
             'tanggalPertama' => presensi::where('user_id', auth()->user()->id)->latest()->first(),
-            'shift' => shift::where('id', auth()->user()->shift_id)->first()
+            'shift' => shift::where('id', auth()->user()->shift_id)->first(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
         ]);
     }
     public function absen()
@@ -45,14 +49,18 @@ class PresensiController extends Controller
         return view('admin.absen',[
             'title' => "Absen",
             'absens' => presensi::all(),
-            'shift' => shift::first()
+            'shift' => shift::first(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
+
         ]);
     }
     public function karyawan()
     {
         return view('admin.karyawan', [
             'title' => "Karyawan",
-            'karyawans' => User::where('level', 'karyawan')->get()
+            'karyawans' => User::where('level', 'karyawan')->get(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
+
         ]);
     }
 

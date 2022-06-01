@@ -1,15 +1,20 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Karyawan</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<style>
+  .sgnt:hover {
+    cursor: pointer;
+  }
+</style>
+
+
+<header class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-0 shadow">
+  <a class="navbar-col-md-3 col-lg-2 me-0" href="/"><img src="{{ asset('storage/' . $data->image) }}" width="70" class="ms-5" style="margin-top: -10px ; margin-bottom : -10px"></a>
   </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
+    <div class="nav-item text-nowrap pe-3 ps-3 pt-1 bg-dark">
       @auth
       <form action="/logout" method="post">
         @csrf
-        <button type="submit" class="nav-link px-3 bg-dark text-light" style="border : 0px" >Sign out</button>
+        <label for="signout"class="mt-3 fs-6 sgnt" onclick="return confirm(' Are Yout Sure want to Log Out? ')">Sign Out</label>
+        <button type="submit" class="d-none" style="border : 0px;" id="signout">Sign Out</button>
       </form>
       @else
       <a class="nav-link px-3" href="/login">Sign in</a>
@@ -17,3 +22,6 @@
     </div>
   </div>
 </header>
+
+<script>
+</script>

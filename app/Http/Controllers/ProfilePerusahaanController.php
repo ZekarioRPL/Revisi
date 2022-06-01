@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\shift;
 use Illuminate\Http\Request;
 use App\Models\ProfilPerusahaan;
+use App\Models\shift;
 
 class ProfilePerusahaanController extends Controller
 {

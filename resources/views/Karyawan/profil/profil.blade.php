@@ -138,12 +138,6 @@
                                   </span>
                                 </div>
                               </div>
-                              <div class="basic-information">
-                                <h4>Kehadiran</h4>
-                                <div class="birthday-content">
-                                  <span class="contact-title">Hadir :</span>
-                                  <span class="gender">00</span>
-                                </div>
                                 <a href="/edit" class="btn btn-primary">Edit</a>
                               </div>
                             </div>

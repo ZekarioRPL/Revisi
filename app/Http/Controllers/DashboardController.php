@@ -6,6 +6,7 @@ use App\Models\gaji;
 use App\Models\user;
 use App\Models\shift;
 use App\Models\presensi;
+use App\Models\ProfilPerusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,8 @@ class DashboardController extends Controller
             'title' => "Dashboard",
             'kehadirans' => presensi::latest()->paginate(4)->all(),
             'gaji_karyawans' => gaji::all(),
-            'shift' => shift::first()
+            'shift' => shift::first(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
         ]);
     }
     }

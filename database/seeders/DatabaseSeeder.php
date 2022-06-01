@@ -26,6 +26,33 @@ class DatabaseSeeder extends Seeder
             'email' => 'sefdani@gmail.com',
             'password' => bcrypt('sefdani')
         ]);
+        User::create([
+            'name' => 'Zidan',
+            'level' => 'admin',
+            'jenis_kelamin' => "laki-laki",
+            "alamat" => "Ponorogo",
+            'username' => 'zdn',
+            'email' => 'zidan@gmail.com',
+            'password' => bcrypt('zdn')
+        ]);
+        User::create([
+            'name' => 'Veri Sandria',
+            'level' => 'admin',
+            'jenis_kelamin' => "laki-laki",
+            "alamat" => "Ponorogo",
+            'username' => 'veri',
+            'email' => 'veri@gmail.com',
+            'password' => bcrypt('veri')
+        ]);
+        User::create([
+            'name' => 'Riki Agus',
+            'level' => 'admin',
+            'jenis_kelamin' => "laki-laki",
+            "alamat" => "Ponorogo",
+            'username' => 'riki',
+            'email' => 'riki@gmail.com',
+            'password' => bcrypt('riki')
+        ]);
 
         ProfilPerusahaan::create([
             'nama_perusahaan' => 'Default',

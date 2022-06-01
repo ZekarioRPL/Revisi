@@ -46,6 +46,16 @@
           </div>
           <!-- /# column -->
         </div>
+        <div class="alert">
+
+        </div>     
+        @if ($message = Session::get('error'))
+         <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+            <strong>Maaf </strong>{{ $message }}<strong>{{ request('search') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif 
+        
         <!-- /# row -->
         <!-- content -->
         <div class="col-lg-12">
@@ -72,6 +82,7 @@
         <!-- content - End -->
 
         @if(!empty(request('search')))
+        @if (!empty($search))
         <!-- Content - slip Gaji -->
         <div class="col-lg-12">
             <div class="card">
@@ -91,10 +102,14 @@
                                             <p> hello@Admin Board.com <br> Name Perusahaan
                                             </p>
                                         </div>
+
                                         <!--End Info-->
                                         <div class="title">
                                             <h4>Tanggal</h4>
+                                            
                                             <p>{{ $search->tanggal }}<br> {{ $search->updated_at->diffForHumans() }}
+
+                                            
                                             </p>
                                         </div>
                                         <!--End Title-->
@@ -147,10 +162,16 @@
                                         <form action="/pembayaran/{{ $search->id }}" method="post">
                                             @csrf
                                             <div class="row justify-content-center ">
-                                                <a href="" class="btn btn-primary col-lg-5" name="konfirmasi" onclick="return confirm(' Apakah Kamu Yakin Mengkonfirmasi Sekarang?? ')">Konfirmasi</a>
-                                                <button class="badge bg-danger border-0" onclick="return confirm(' Are Yout Sure Delete ')">konfirmasi</button>
+                                                @if ($search->status == null)
+                                                    <button class="btn btn-success w-80 pt-3 pb-3" onclick="return confirm(' Apa Kamu Mau Mengkonfirmasinya? ')">Konfirmasi</button>
+                                                @else
+                                                    <button class="btn btn-secondary w-80 pt-3 pb-3" disabled onclick="return confirm(' Apa Kamu Mau Mengkonfirmasinya? ')">Konfirmasi</button>
+                                                @endif
+                                                
                                             </div>
                                         </form>
+                                        @endif
+
                                     </div>
                                     <!--End InvoiceBot-->
                                 </div>
@@ -172,6 +193,7 @@
 
 
 <!-- javascript -->
+
     <!-- jquery vendor -->
     <script src="assets/js/lib/jquery.min.js"></script>
     <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>

@@ -1,62 +1,62 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse mt-3">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">
+            <a class="nav-link {{ ($title === "Dashboard") ? 'active' : '' }}" aria-current="page" href="/">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profils">
+            <a class="nav-link {{ ($title === "Profil") ? 'active' : '' }}" href="/profils">
               <span data-feather="users"></span>
               Profil
             </a>
           </li>
           @can('karyawan')
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/profile_perusahaan">
-              <span data-feather="activity"></span>
+          <li class="nav-item ">
+            <a class="nav-link {{ ($title === "Profile Perusahaan") ? 'active' : '' }}" aria-current="page" href="/profile_perusahaan">
+              <span data-feather="info"></span>
               Profile Perusahaan
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span data-feather="file"></span>
+              <span data-feather="clipboard"></span>
               Absensi
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
                 <a class="dropdown-item" href="/absensi">
-                  <span data-feather="file"></span>
+                  <span data-feather="log-in"></span>
                   Absen Masuk
                 </a>
               </li>
               <li>
                 <a class="dropdown-item" href="/keluar">
-                  <span data-feather="file"></span>
+                  <span data-feather="log-out"></span>
                   Absen Keluar
                 </a>
               </li>
-              <li><hr class="dropdown-divider"></li>
+              <li><hr class="dropdown-divider "></li>
               <li>
                 <a class="dropdown-item" href="/kehadiran">
-                  <span data-feather="file"></span>
+                  <span data-feather="check-square"></span>
                   Kehadiran
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/karyawan">
-              <span data-feather="layers"></span>
+            <a class="nav-link {{ ($title === "List Karyawan") ? 'active' : '' }}" href="/karyawan">
+              <span data-feather="users"></span>
               List Karyawan
             </a>
           </li>
         </ul>
         <li class="nav-item">
-            <a class="nav-link" href="/gaji">
-              <span data-feather="shopping-cart"></span>
+            <a class="nav-link {{ ($title === "Gaji") ? 'active' : '' }}" href="/gaji">
+              <span data-feather="dollar-sign"></span>
               Gaji
             </a>
           </li>
@@ -71,31 +71,31 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="/profile_perusahaan">
-              <span data-feather="file-text"></span>
+            <a class="nav-link  {{ ($title === "Profile Perusahaan") ? 'active' : '' }}" href="/profile_perusahaan">
+              <span data-feather="globe"></span>
               Profile Perusahaan
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/pembayaran">
-              <span data-feather="file-text"></span>
+            <a class="nav-link {{ ($title === "Pembayaran") ? 'active' : '' }}" href="/pembayaran">
+              <span data-feather="dollar-sign"></span>
               Pembayaran
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/gaji">
-              <span data-feather="shopping-cart"></span>
+            <a class="nav-link {{ ($title === "Gaji") ? 'active' : '' }}" href="/gaji">
+              <span data-feather="dollar-sign"></span>
               Gaji
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/absen">
-              <span data-feather="file-text"></span>
+            <a class="nav-link {{ ($title === "Absen") ? 'active' : '' }}" href="/absen">
+              <span data-feather="users"></span>
               Absen
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/karyawan">
+            <a class="nav-link {{ ($title === "Karyawan") ? 'active' : '' }}" href="/karyawan">
               <span data-feather="file-text"></span>
               Karyawan
             </a>

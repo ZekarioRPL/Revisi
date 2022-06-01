@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\shift;
+use App\Models\ProfilPerusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+// use Illuminate\Support\Facades\Crypt;
+// use Illuminate\Contracts\Encryption\DecryptException;
+
 
 class ProfilController extends Controller
 {
@@ -19,17 +24,24 @@ class ProfilController extends Controller
     {
         return view('Karyawan.profil.profil', [
             'title' => "Profil",
-            'shift' => User::where('id', auth()->user()->id)->first()
+            'game' => User::where('id', 1)->first(),
+            'shift' => User::where('id', auth()->user()->id)->first(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
+
         ]);
     }
+
     public function editprofile()
     {
         return view('Karyawan.profil.editprofile', [
             'title' => "Edit Profile",
-            "shifts" => shift::all()
+            'shifts' => shift::all(),
+            'data' => ProfilPerusahaan::where('id', 1)->first(),
+
+            // 'encrypt' => User::where('id', Auth::user()->id)->pluck('jenis_kelamin'),
+            // 'decrypted' => Crypt::decryptString($encrypt),
         ]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -77,6 +89,8 @@ class ProfilController extends Controller
         return view('karyawan.dashboard', [
             "title" => 'Edit Profile',
             "user" => $User,
+            'data' => ProfilPerusahaan::where('id', 1)->first(),
+
         ]);
         
     }
@@ -90,16 +104,16 @@ class ProfilController extends Controller
      */
     public function update(Request $request)
     {
-        // $this->validate($request, [
-        //     'password' => 'confirmed',
-        //     'image' => 'image|file|max:2048',
-        //     'name' => 'max:255',
-        //     'jenis_Kelamin' => 'max:255',
-        //     'alamat' => 'max:255',
-        //     'username' => 'max:255',
-        //     'shift' => 'max:255'
-        // ]);
-        
+        $this->validate($request, [
+            'password' => 'same:confirm_password',
+            'confirm_password' => 'max:255',
+            'image' => 'image|file|max:2048',
+            'name' => 'max:255',
+            'jenis_Kelamin' => 'max:255',
+            'alamat' => 'max:255',
+            'username' => 'max:255',
+        ]);
+
         $user = User::where('id', Auth::user()->id)->first();
         $user->username = $request->username;
     	$user->name = $request->name;
@@ -123,25 +137,6 @@ class ProfilController extends Controller
     	$user->update();
 
     	return redirect('/profils')->with('bisa', 'Data Telah Di Edit!!');
-        // $rules = [
-        //     'name' => 'required|max:255',
-        //     'jenis_Kelamin' => 'required|max:255',
-        //     'alamat' => 'required|max:255',
-        //     'username' => 'required|max:255'
-        // ];
-
-        // $bebassaja = $request->validate($rules);
-
-        // // str::limit untuk membatasi | eps 19|10.20| laravel search : string helper
-        // // ----------------------jika tidak ada---------------------------------ini-----maka akan default '....'
-
-        // // search laravel = update | insert
-        // User::where('id', 1)
-        //         ->update($bebassaja);
-
-
-        // // kembalikan ke halaman post
-        // return redirect('/profils')->with('bisa', 'Selamat Data Telah Di Edit!!');
     }
 
     /**

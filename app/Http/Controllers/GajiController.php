@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\gaji;
 use App\Models\User;
+use App\Models\ProfilPerusahaan;
 use App\Models\presensi;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoregajiRequest;
@@ -23,19 +24,28 @@ class GajiController extends Controller
             'title' => "Gaji",
             'gaji_admins' => gaji::latest()->get(),
             'gaji_karyawans' => gaji::where('karyawan_id', auth()->user()->id)->latest()->get(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
+
         ]);
     }
     public function bayar()
     {
         $search = gaji::latest();
         if (request('search')) {
-            $search->where('kode', 'like', '%' . request('search')  . '%');
+            $search->where('kode', 'like', request('search'));
+        }
+        $cek = $search->first();
+        if (empty($cek)){
+            return redirect('/pembayaran')->with('error', 'Tidan Ada data dengan kode');
         }
 
         return view('Karyawan.gaji.pembayaran', [
             'title' => "Pembayaran",
-            'search' => $search->first()
+            'search' => $search->first(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
+            
         ]);
+        
     }
     public function konfirmasi(Request $request, $id)
     {
@@ -89,7 +99,9 @@ class GajiController extends Controller
         return view('karyawan.gaji.tambahgaji', [
             'title' => "Tambah Gaji",
             'karyawans' => User::where('level', 'karyawan')->get(),
-            'kehadirans' => presensi::where('user_id', auth()->user()->id)->get()
+            'kehadirans' => presensi::where('user_id', auth()->user()->id)->get(),
+            'data' => ProfilPerusahaan::where('id', 1)->first()
+
         ]);
     }
 

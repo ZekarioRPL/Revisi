@@ -26,6 +26,13 @@
     <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/lib/helper.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <style>
+        #ip:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body class="bg-primary">
@@ -68,7 +75,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                    <div class="d-flex">
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                        <div class="fs-4 ml-2 mt-1 text-dark"  onclick="myFunction()" id="ip"> <i class="bi bi-eye-fill"></i></div>
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
@@ -84,4 +94,15 @@
 </body>
 
 </html>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 @endsection
