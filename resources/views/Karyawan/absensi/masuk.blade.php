@@ -106,7 +106,8 @@
                                     </div>
                                     <center>
                                       <div class="form-group">
-                                          <div class="row justify-text-center">
+                                        <div class="container">
+                                          <div class="row justify-text-center d-block mt-3 mb-3">
                                             <div class="col-sm-2">
                                               <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="radio" id="radio1" value="hadir" required>
@@ -117,21 +118,22 @@
                                             </div>
                                             <div class="col-sm-2">
                                               <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="radio" id="radio1" value="sakit" required>
-                                                <label class="form-check-label" for="radio1">
+                                                <input class="form-check-input" type="radio" name="radio" id="radio2" value="sakit" required>
+                                                <label class="form-check-label" for="radio2">
                                                   Sakit
                                                 </label>
                                               </div>
                                             </div>
                                             <div class="col-sm-2">
                                               <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="radio" id="radio1" value="izin" required>
-                                                <label class="form-check-label" for="radio1">
+                                                <input class="form-check-input" type="radio" name="radio" id="radio3" value="izin" required>
+                                                <label class="form-check-label" for="radio3">
                                                   Izin
                                                 </label>
                                               </div>
                                             </div>
                                           </div>
+                                        </div>
                                       <input type="hidden" name="latitude" id="latitude" class="latitude" required value="">
                                       <input type="hidden" name="longitude" id="longitude" class="longitude" required value="">
                                         <button type="submit" class="btn btn-primary">Klik Untuk Presensi Masuk</button>
