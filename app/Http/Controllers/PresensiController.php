@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorepresensiRequest;
 use App\Http\Requests\UpdatepresensiRequest;
+use Illuminate\Support\Facades\Hash;
 
 class PresensiController extends Controller
 {
@@ -98,14 +99,19 @@ class PresensiController extends Controller
                     if ($presensi){
                         dd("sudah ada");
                     }else{
-                        Presensi::create([
-                            'user_id' => auth()->user()->id,
-                            'latitude' => $request->latitude,
-                            'shift_id' =>  auth()->user()->shift_id,
-                            'longitude' => $request->longitude,
-                            'tgl' => $tanggal,
-                            'jammasuk' => $localtime,
-                        ]);
+                        if($tanggal > '07:00:00'){
+                            return back()->with('error', 'Absen ditutup jam 7 tadi');
+                        }else{
+                            Presensi::create([
+                                'user_id' => auth()->user()->id,
+                                'latitude' => $request->latitude,
+                                'shift_id' =>  auth()->user()->shift_id,
+                                'longitude' => $request->longitude,
+                                'tgl' => $tanggal,
+                                'jammasuk' => $localtime,
+                            ]);
+                        }
+                        
                     }
                     return redirect('/');
         } else {
@@ -148,7 +154,7 @@ class PresensiController extends Controller
         $date = new DateTime('now', new DateTimeZone($timezone)); 
         $tanggal = $date->format('Y-m-d');
         $localtime = $date->format('H:i:s');
-
+        
         $presensi = Presensi::where([
             ['user_id','=',auth()->user()->id],
             ['tgl','=',$tanggal],
@@ -181,5 +187,33 @@ class PresensiController extends Controller
     public function destroy(presensi $presensi)
     {
         //
+    }
+
+    public function ubahpw($id){
+        return view('admin.ubahpassword', [
+            'title' => 'Ubah Password',
+            'dt' => User::where('id', $id)->first()
+        ]);
+    }
+
+    public function ubah(Request $request, $id){
+        $this->validate($request, [
+            'email' => 'email:dns',
+            'password' => 'same:confirm_password',
+            'confirm_password' => 'max:255',
+            'jabatan' => 'max:255'
+        ]);
+
+        $ub = User::where('id', $id)->first();
+        $ub->email = $request->email;
+        if(!empty($request->password))
+    	{
+    		$ub->password = Hash::make($request->password);
+    	}
+        $ub->jabatan = $request->jabatan;
+        $ub->update();
+
+        return redirect('/karyawan')->with('success', 'Ubah data user sukses');
+
     }
 }

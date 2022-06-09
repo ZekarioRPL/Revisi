@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\shift;
+use App\Models\ProfilPerusahaan;
 use App\Http\Requests\StoreshiftRequest;
 use App\Http\Requests\UpdateshiftRequest;
 use Illuminate\Http\Request;
@@ -37,10 +38,10 @@ class ShiftController extends Controller
     public function create()
     {
         return view('Karyawan.shift.tambahshift', [
-            'title' => "Tambah Shift"
+            'title' => "Tambah Shift",
+            'data' => ProfilPerusahaan::where('id', 1)->first()
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      *

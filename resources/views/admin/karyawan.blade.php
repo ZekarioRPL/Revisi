@@ -1,7 +1,7 @@
 @extends('Dashboard.DashboardMain')
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
-    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
+    {{-- <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
     <!-- Retina iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
     <!-- Retina iPhone Touch Icon-->
@@ -9,7 +9,7 @@
     <!-- Standard iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
     <!-- Standard iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff"> --}}
 
     <!-- Styles -->
     <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
@@ -21,6 +21,12 @@
     <link href="assets/css/style.css" rel="stylesheet">
 @section('container')
 
+@if (session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong class="me-1">Mantap!</strong>{{ session('success') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
@@ -65,6 +71,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>Name</th>
                                                     <th>Username</th>
                                                     <th>Jenis Kelamin</th>
                                                     <th>Tanggal Lahir</th>
@@ -79,6 +86,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $karyawan->name }}</td>
+                                                    <td>{{ $karyawan->username }}</td>
                                                     @if(empty($karyawan->jenis_kelamin)) 
                                                     <td>Not Inputable!</td>
                                                     @else
@@ -98,6 +106,7 @@
                                                     @endif
                                                     @can('admin')
                                                     <td>
+                                                    <a href="/ubah-password/{{ $karyawan->id }}" class="badge bg-success border-0">Ubah</a>
                                                     <form action="#" method="post" class="d-inline">
                                                         @method('DELETE')
                                                         @csrf
@@ -116,6 +125,7 @@
                         </div>
                         <!-- /# column -->
                     </div>
+
                     <!-- /# row -->
 
                     <div class="row">

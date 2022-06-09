@@ -36,7 +36,7 @@ class GajiController extends Controller
         }
         $cek = $search->first();
         if (empty($cek)){
-            return redirect('/pembayaran')->with('error', 'Tidan Ada data dengan kode');
+            return redirect('/pembayaran')->with('error', 'Tidak Ada data dengan kode');
         }
 
         return view('Karyawan.gaji.pembayaran', [

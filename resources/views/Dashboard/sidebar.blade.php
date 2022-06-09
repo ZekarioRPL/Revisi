@@ -1,3 +1,7 @@
+<?php use App\Models\gaji;
+
+$cek_gaji = gaji::first();
+?>
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse mt-3">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
@@ -75,13 +79,21 @@
               <span data-feather="globe"></span>
               Profile Perusahaan
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ ($title === "Pembayaran") ? 'active' : '' }}" href="/pembayaran">
-              <span data-feather="dollar-sign"></span>
-              Pembayaran
-            </a>
-          </li>
+            @if(!empty( $cek_gaji) )
+            <li class="nav-item">
+              <a class="nav-link {{ ($title === "Pembayaran") ? 'active' : '' }}" href="/pembayaran">
+                <span data-feather="dollar-sign"></span>
+                Pembayaran
+              </a>
+            </li>
+            @else
+            <li class="nav-item">
+              <a class="nav-link {{ ($title === "Pembayaran") ? 'active' : '' }}" href="/gaji" onclick="alert('Maaf, Tolong Isi Gaji Dahulu')">
+                <span data-feather="dollar-sign"></span>
+                Pembayaran
+              </a>
+            </li>
+            @endif
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Gaji") ? 'active' : '' }}" href="/gaji">
               <span data-feather="dollar-sign"></span>

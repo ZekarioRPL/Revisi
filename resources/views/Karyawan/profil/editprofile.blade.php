@@ -281,7 +281,6 @@
     <script>
         function myFunction() {
             var x = document.getElementById("inputPassword");
-            var y = document.
             if (x.type === "password") {
                 x.type = "text";
             } else {

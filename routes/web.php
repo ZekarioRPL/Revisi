@@ -82,8 +82,18 @@ Route::post('/edit/profil-perusahaan', [ProfilePerusahaanController::class, 'upd
 
 Route::resource('/registrasi', RegisterController::class)->middleware('auth');
 
+
+Route::get('/lupa-password', [RegisterController::class, 'lupapassword']);
+Route::post('/lupa-password/{id}', [RegisterController::class, 'ubah']);
+
+Route::get('/ubah-password/{id}', [PresensiController::class, 'ubahpw'])->middleware('auth');
+Route::post('/ubah-pw/{id}', [PresensiController::class, 'ubah']);
+
 // QR
 // Route::get('/qr', [DataController::class, 'index']);
 // Route::post('/qr', [DataController::class, 'store'])->name('store');
+// Route::get('qrcode/{id}', [DataController::class, 'generate'])->name('generate');
+
+;
 // Route::get('qrcode/{id}', [DataController::class, 'generate'])->name('generate');
 
