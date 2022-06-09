@@ -1,0 +1,37 @@
+* [33m7120a8f[m[33m ([m[1;36mHEAD -> [m[1;32msefdanny[m[33m)[m Gaji, shift, karyawan, dan modif absen
+*   [33m0c164c8[m merge with main
+[32m|[m[33m\[m  
+[32m|[m * [33m0d146bc[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m membuat menu admin dan karyawan
+* [33m|[m [33mdd6e8fc[m gaji
+[33m|[m[33m/[m  
+*   [33m0283b42[m merge dashboard1 ke main/login
+[34m|[m[35m\[m  
+[34m|[m *   [33m979d488[m[33m ([m[1;31morigin/Dashboard1[m[33m, [m[1;32mDashboard1[m[33m)[m Merge remote-tracking branch 'asli/main' into Dashboard1
+[34m|[m [36m|[m[1;31m\[m  
+[34m|[m * [1;31m|[m [33m8d8d8c5[m memperbaiki kekacauan
+[34m|[m * [1;31m|[m [33m99b9ebb[m permbaruan dan masih kacau
+* [1;31m|[m [1;31m|[m   [33m4ce7d44[m Merge pull request #3 from ZidanFikriAditya/login
+[1;32m|[m[1;33m\[m [1;31m\[m [1;31m\[m  
+[1;32m|[m * [1;31m|[m [1;31m|[m [33m25d05d0[m login
+[1;32m|[m * [1;31m|[m [1;31m|[m [33ma5d11cb[m sippp
+[1;32m|[m * [1;31m|[m [1;31m|[m [33m5300f4e[m first commit
+[1;32m|[m[1;32m/[m [1;31m/[m [1;31m/[m  
+* [1;31m|[m [1;31m/[m [33m63fe4e5[m Merge pull request #2 from ZekarioRPL/Dashboard1
+[1;31m|[m[1;31m\[m[1;31m|[m [1;31m|[m 
+[1;31m|[m [1;31m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;31m|[m   
+[1;31m|[m * [33mc31f138[m halaman profil(bingung), halaman gaji
+[1;31m|[m * [33m84303e4[m membuat jumlah saldo di gaju.php
+[1;31m|[m * [33mad78023[m modif sidebar
+[1;31m|[m * [33me559865[m Modif DashboardMain
+[1;31m|[m * [33m8054c02[m modif web.php
+[1;31m|[m * [33m18f782b[m membuat css dan js dari dashboard
+[1;31m|[m * [33m954fcb2[m mengganti database
+[1;31m|[m * [33m48139b7[m Vendor
+[1;31m|[m * [33m361e43e[m membuat dashboard-1
+[1;31m|[m * [33md0727af[m AWAL
+* [1;35m|[m [33m24afe58[m[33m ([m[1;31masli/main[m[33m)[m Merge pull request #1 from ZekarioRPL/main
+[1;36m|[m[1;35m\[m[1;35m|[m 
+[1;36m|[m * [33m71441e8[m belajar
+[1;36m|[m[1;36m/[m  
+* [33m3c1d7e4[m LARAVEL AWAL
