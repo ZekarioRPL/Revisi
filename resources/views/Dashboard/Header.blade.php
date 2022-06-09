@@ -13,7 +13,7 @@
       @auth
       <form action="/logout" method="post">
         @csrf
-        <label for="signout"class="mt-3 fs-6 sgnt" onclick="return confirm(' Are Yout Sure want to Log Out? ')">Sign Out</label>
+        <label for="signout"class="mt-3 fs-6 sgnt text-light" onclick="return confirm(' Are Yout Sure want to Log Out? ')">Sign Out</label>
         <button type="submit" class="d-none" style="border : 0px;" id="signout">Sign Out</button>
       </form>
       @else

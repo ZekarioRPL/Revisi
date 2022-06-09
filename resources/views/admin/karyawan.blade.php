@@ -72,10 +72,15 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Username</th>
+                                                    <th>Name</th>
+                                                    <th>Jabatan</th>
                                                     <th>Jenis Kelamin</th>
                                                     <th>Tanggal Lahir</th>
                                                     <th>Alamat</th>
+                                                    @can('admin')
+                                                    <th>Action</th> 
+                                                    @endcan
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -83,6 +88,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $karyawan->name }}</td>
+                                                    <td>{{ $karyawan->jabatan }}</td>
                                                     @if(empty($karyawan->jenis_kelamin)) 
                                                     <td>Not Inputable!</td>
                                                     @else
@@ -100,6 +106,9 @@
                                                     @else
                                                     <td>{{ $karyawan->alamat }}</td>
                                                     @endif
+                                                    <td>
+                                                    <a href="/ubah-password/{{ $karyawan->id }}" class="badge bg-success border-0">Ubah</a>
+                                                </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

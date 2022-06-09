@@ -33,4 +33,38 @@ class RegisterController extends Controller
         
         return redirect('/karyawan');
     }
+    public function lupapassword(){
+        
+        $search = User::latest();
+        if (request('email')) {
+            $search->where('email', 'like', request('email'));
+        }
+        $cek = $search->first();
+        if (empty($cek)){
+            return redirect('/lupa-password')->with('error', 'Tidak Ada data dengan kode');
+        }
+        return view('register.lupapassword', [
+            'lupa' => $search->first(),
+            'title' => "Lupa Password"
+        ]);
+        
+        
+    }
+
+    public function ubah(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'password' => 'same:confirm_password',
+            'confirm_password' => 'min:6'
+        ]);
+
+        $validated = bcrypt($validated['password']);
+        
+        $pw = User::where('id', $id)->first();
+        $pw->password = $validated;
+        $pw->update();
+
+        return redirect('/login')->with('success', 'Penggantian password success');
+
+    }
 }

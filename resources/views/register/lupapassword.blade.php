@@ -43,50 +43,61 @@
                 <div class="col-lg-6">
 
                     <div class="login-content">
-                        <div class="login-logo">
-                            <a href="index.html"></a>
-                        </div>
+                        
                         @if (session()->has('success'))
-                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <div class="alert alert-success alert-dismissible text-light fade show" role="alert">
                             {{ session('success') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                           </div>
                         @endif
                           
-                          @if (session()->has('LoginError'))
+                          @if (session()->has('error'))
                           <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{ session('LoginError') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                           </div>
                         @endif
                         <div class="login-form">
-                            <h4>Login</h4>
-                            <form action="/login" method="post">
-                            @csrf
-                            
+                            <h4>Ubah Password</h4>
+                        <form action="/lupa-password">
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required autofocus value="{{ old('email') }}">
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required autofocus value="{{ request('email') }}">
                                     @error('email')
                                         <div class="invalid-feedback">
                                         {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <div class="d-flex">
-                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
-                                        <div class="fs-4 ml-2 mt-1 text-dark"  onclick="myFunction()" id="ip"> <i class="bi bi-eye-fill"></i></div>
-                                    </div>
-                                </div>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Kirim</button>
+                        </form>
 
-                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
-                                <div class="d-block text-center">
 
-                                    <strong class="text-dark me-1">Lupa Password ?</strong><a href="/lupa-password" class="lupapw">Klik Di sini!</a>
-                                </div>
-                            </form>
+                            <hr>
+                            <br>
+
+                            @if (!empty(request('email')))
+                                @if (!empty($lupa))
+                                <form action="/lupa-password/{{ $lupa->id }}" method="post">
+                                    @csrf
+                                        <div class="form-group">
+                                            <label for="password">New Password</label>
+                                            <div class="d-flex">
+                                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                                <div class="fs-4 ml-2 mt-1 text-dark"  onclick="myFunction()" id="ip"> <i class="bi bi-eye-fill"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm-password">Confirm Password</label>
+                                            <div class="d-flex">
+                                                <input type="password" name="confirm_password" id="confirm-password" class="form-control" placeholder="Confirm Your Password Again" required>
+                                                <div class="fs-4 ml-2 mt-1 text-dark"  onclick="myFunction1()" id="ip"> <i class="bi bi-eye-fill"></i></div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Kirim</button>
+                                    </form>
+                                @endif
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -101,6 +112,14 @@
 <script>
     function myFunction() {
         var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    function myFunction1() {
+        var x = document.getElementById("confirm-password");
         if (x.type === "password") {
             x.type = "text";
         } else {
