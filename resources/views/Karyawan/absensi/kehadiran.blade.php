@@ -120,12 +120,21 @@ $mountList = array(
                                                 <tr>
                                                     <td>
                                                         <?php echo $dayList[$day]; ?>
-                                                        @if( $kehadiran->jammasuk >= $kehadiran->shift->time_in)
-                                                            <span class="badge badge-danger">Telat</span>
+                                                        @if($kehadiran->status === 'hadir')
+                                                            @if( $kehadiran->jammasuk >= $kehadiran->shift->time_in)
+                                                                <span class="badge badge-danger">Terlambat</span>
+                                                            @else
+                                                                <span class="badge badge-success">Hadir</span>
+                                                            @endif
+                                                        @elseif($kehadiran->status === 'sakit')
+                                                        <span class="badge badge-warning">Sakit</span>
+                                                        @elseif($kehadiran->status === 'izin')
+                                                        <span class="badge badge-warning">izin</span>
                                                         @else
-                                                            <span class="badge badge-success">Hadir</span>
+                                                        <span class="badge badge-danger">Tidak Hadir</span>
                                                         @endif
                                                     </td>
+
                                                     @if(empty($kehadiran->jammasuk)) 
                                                         <td><span class="badge badge-primary">00:00:00</span></td>
                                                     @else

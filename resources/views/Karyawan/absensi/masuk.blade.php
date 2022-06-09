@@ -106,6 +106,32 @@
                                     </div>
                                     <center>
                                       <div class="form-group">
+                                          <div class="row justify-text-center">
+                                            <div class="col-sm-2">
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="radio" id="radio1" value="hadir" required>
+                                                <label class="form-check-label" for="radio1">
+                                                  Hadir
+                                                </label>
+                                              </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="radio" id="radio1" value="sakit" required>
+                                                <label class="form-check-label" for="radio1">
+                                                  Sakit
+                                                </label>
+                                              </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="radio" id="radio1" value="izin" required>
+                                                <label class="form-check-label" for="radio1">
+                                                  Izin
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div>
                                       <input type="hidden" name="latitude" id="latitude" class="latitude" required value="">
                                       <input type="hidden" name="longitude" id="longitude" class="longitude" required value="">
                                         <button type="submit" class="btn btn-primary">Klik Untuk Presensi Masuk</button>

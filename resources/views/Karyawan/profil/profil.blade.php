@@ -152,11 +152,33 @@
                                 </div>
                                 <div class="email-content">
                                   <span class="contact-title">Sakit :</span>
-                                  <span class="contact-email">{{ auth()->user()->email }}</span>
+                                  <span class="mail-address">
+                                    @if ($jumlah_sakit)
+                                      {{$jumlah_sakit}}
+                                    @else
+                                       <small>0</small> 
+                                    @endif
+                                  </span>
                                 </div>
                                 <div class="email-content">
                                   <span class="contact-title">Izin :</span>
-                                  <span class="contact-email">{{ auth()->user()->email }}</span>
+                                  <span class="mail-address">
+                                    @if ($jumlah_izin)
+                                      {{$jumlah_izin}}
+                                    @else
+                                       <small>0</small> 
+                                    @endif
+                                  </span>
+                                </div>
+                                <div class="email-content">
+                                  <span class="contact-title">Tidak Hadir :</span>
+                                  <span class="mail-address">
+                                    @if ($jumlah_tidakhadir)
+                                      {{$jumlah_tidakhadir}}
+                                    @else
+                                       <small>0</small> 
+                                    @endif
+                                  </span>
                                 </div>
                               </div>
                                 <a href="/edit" class="btn btn-primary">Edit</a>

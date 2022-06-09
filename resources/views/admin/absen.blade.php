@@ -109,10 +109,18 @@
                                                     <td>{{ $absen->shift->shift_name }}</td>
                                                     <td>{{ $absen->tgl }}</td>
                                                     <td>
-                                                        @if( $absen->jammasuk >= $shift->time_in )
-                                                            <span class="badge badge-danger">Telat</span>
+                                                    @if($absen->status === 'hadir')
+                                                            @if( $absen->jammasuk >= $absen->shift->time_in)
+                                                                <span class="badge badge-danger">Terlambat</span>
+                                                            @else
+                                                                <span class="badge badge-success">Hadir</span>
+                                                            @endif
+                                                        @elseif($absen->status === 'sakit')
+                                                        <span class="badge badge-warning">Sakit</span>
+                                                        @elseif($absen->status === 'izin')
+                                                        <span class="badge badge-warning">izin</span>
                                                         @else
-                                                            <span class="badge badge-success ">Hadir</span>
+                                                        <span class="badge badge-danger">Tidak Hadir</span>
                                                         @endif
                                                     </td>
                                                     <td>

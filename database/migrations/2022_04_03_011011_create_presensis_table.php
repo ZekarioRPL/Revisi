@@ -16,7 +16,8 @@ class CreatePresensisTable extends Migration
         Schema::create('presensis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->foreignId('status')->nullable();
+            // $table->foreignId('status')->nullable();
+            $table->string('status')->nullable();
             $table->foreignId('shift_id');
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();

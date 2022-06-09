@@ -24,9 +24,15 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        $hadir = presensi::where('user_id', auth()->user()->id)->get();
+        $hadir = presensi::where('user_id', auth()->user()->id)->where('status', 'hadir')->get();
+        $sakit = presensi::where('user_id', auth()->user()->id)->where('status', 'sakit')->get();
+        $izin = presensi::where('user_id', auth()->user()->id)->where('status', 'izin')->get();
+        $tidakhadir = presensi::where('user_id', auth()->user()->id)->where('status', 'tidakhadir')->get();
         $jumlah_hadir = count($hadir);
-        return view('Karyawan.profil.profil', compact('jumlah_hadir'),[
+        $jumlah_sakit = count($sakit);
+        $jumlah_izin = count($izin);
+        $jumlah_tidakhadir = count($tidakhadir);
+        return view('Karyawan.profil.profil', compact('jumlah_hadir', 'jumlah_sakit', 'jumlah_izin', 'jumlah_tidakhadir'),[
             'title' => "Profil",
             'game' => User::where('id', 1)->first(),
             'shift' => User::where('id', auth()->user()->id)->first(),

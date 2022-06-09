@@ -102,9 +102,9 @@ class GajiController extends Controller
         $kondisi = '';
         if (request('karyawan_id')) {
             $gaji = User::where('id', request('karyawan_id'))->latest()->first();
-            $presensi = presensi::where('user_id', request('karyawan_id'))->where('kondisi', null)->get();
+            $presensi = presensi::where('user_id', request('karyawan_id'))->where('kondisi', null)->where('status', 'hadir')->get();
             $Jpres = count($presensi);
-            if ($Jpres) {
+            if ($Jpres && $gaji->jabatan->gaji) {
                 $jumlah = $Jpres * $gaji->jabatan->gaji;
             }else {
                 $jumlah = '';

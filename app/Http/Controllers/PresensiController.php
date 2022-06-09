@@ -92,6 +92,9 @@ class PresensiController extends Controller
         if (empty($request->latitude) && empty($request->longitude)) {
             return redirect('/absensi')->with('tidakbisa', 'Tolong Aktifkan Lokasi Anda');
         }
+        // if (empty($request->radio)) {
+        //     return redirect('/absensi')->with('tidakbisa', '');
+        // }
 
         if (!empty($user->shift_id)) {
                     $presensi = Presensi::where([
@@ -104,6 +107,7 @@ class PresensiController extends Controller
                         Presensi::create([
                             'user_id' => auth()->user()->id,
                             'latitude' => $request->latitude,
+                            'status' => $request->radio,
                             'shift_id' =>  auth()->user()->shift_id,
                             'longitude' => $request->longitude,
                             'tgl' => $tanggal,
