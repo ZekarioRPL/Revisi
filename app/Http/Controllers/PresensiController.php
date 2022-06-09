@@ -101,23 +101,53 @@ class PresensiController extends Controller
                         ['user_id','=',auth()->user()->id],
                         ['tgl','=',$tanggal],
                     ])->first();
-                    if ($presensi){
+                    $sudahabsen = Presensi::where([
+                        ['user_id','=',auth()->user()->id],
+                        ['tgl','=',$tanggal],
+                    ])->whereNotIn('jammasuk', [''])->first();
+                    if ($sudahabsen){
                         return redirect('/')->with('tidakbisa', 'Hari ini Anda Telah Absen Masuk');
-                    }else{
-                        Presensi::create([
-                            'user_id' => auth()->user()->id,
-                            'latitude' => $request->latitude,
-                            'status' => $request->radio,
-                            'shift_id' =>  auth()->user()->shift_id,
-                            'longitude' => $request->longitude,
-                            'tgl' => $tanggal,
-                            'jammasuk' => $localtime,
-                        ]);
+                    }elseif($presensi){
+                        $presensi->user_id = auth()->user()->id;
+                        $presensi->latitude = $request->latitude;
+                        $presensi->longitude = $request->longitude;
+                        $presensi->status = $request->radio;
+                        $presensi->shift_id = auth()->user()->shift_id;
+                        $presensi->tgl = $tanggal;
+                        $presensi->jammasuk = $localtime;
+                        $presensi->update();
+                        // $up=[
+                        //     'user_id' => auth()->user()->id,
+                        //     'latitude' => $request->latitude,
+                        //     'status' => $request->radio,
+                        //     'shift_id' =>  auth()->user()->shift_id,
+                        //     'longitude' => $request->longitude,
+                        //     'tgl' => $tanggal,
+                        //     'jammasuk' => $localtime,
+                        // ];
+                        // $presensi->update($up);
                     }
                     return redirect('/')->with('bisa', 'Anda Telah Berhasil Absen');
         } else {
             return redirect('/')->with('tidakbisa', 'Absen Belum bisa dilakukan. Mohon atur shift anda di Menu Profil');
         }
+    }
+    public function oto()
+    {
+        $timezone = 'Asia/Jakarta'; 
+        $date = new DateTime('now', new DateTimeZone($timezone)); 
+        $tanggal = $date->format('Y-m-d');
+        $presensi1 = presensi::where('tgl', $tanggal)->first();
+        if (empty($presensi1)) {
+            $pre_users = User::where('level', 'karyawan')->get();
+            foreach ($pre_users as $pre_user) {
+                $pre = new presensi;
+                $pre->user_id = $pre_user->id;
+                $pre->tgl = $tanggal;
+                $pre->save();
+            }
+        }
+        return redirect('absensi');
     }
 
     /**
