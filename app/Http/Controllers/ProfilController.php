@@ -29,7 +29,7 @@ class ProfilController extends Controller
         $hadir = presensi::where('user_id', auth()->user()->id)->where('status', 'hadir')->get();
         $sakit = presensi::where('user_id', auth()->user()->id)->where('status', 'sakit')->get();
         $izin = presensi::where('user_id', auth()->user()->id)->where('status', 'izin')->get();
-        $tidakhadir = presensi::where('user_id', auth()->user()->id)->where('status', 'tidakhadir')->get();
+        $tidakhadir = presensi::where('user_id', auth()->user()->id)->where('status', null)->get();
         $jumlah_hadir = count($hadir);
         $jumlah_sakit = count($sakit);
         $jumlah_izin = count($izin);

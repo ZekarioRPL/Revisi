@@ -106,21 +106,25 @@
                                                     @else
                                                         <td>{{ $absen->jamkeluar }}</span></td>
                                                     @endif
+                                                    @if($absen->shift)
                                                     <td>{{ $absen->shift->shift_name }}</td>
+                                                    @else
+                                                    <td></td>
+                                                    @endif
                                                     <td>{{ $absen->tgl }}</td>
                                                     <td>
                                                     @if($absen->status === 'hadir')
                                                             @if( $absen->jammasuk >= $absen->shift->time_in)
-                                                                <span class="badge badge-danger">Terlambat</span>
+                                                                <span class="badge badge-danger"> Terlambat</span>
                                                             @else
-                                                                <span class="badge badge-success">Hadir</span>
+                                                                <span class="badge badge-success"> Hadir</span>
                                                             @endif
                                                         @elseif($absen->status === 'sakit')
-                                                        <span class="badge badge-warning">Sakit</span>
+                                                        <span class="badge badge-warning"> Sakit</span>
                                                         @elseif($absen->status === 'izin')
-                                                        <span class="badge badge-warning">izin</span>
+                                                        <span class="badge badge-warning"> izin</span>
                                                         @else
-                                                        <span class="badge badge-danger">Tidak Hadir</span>
+                                                        <span class="badge badge-danger"> Tidak Hadir</span>
                                                         @endif
                                                     </td>
                                                     <td>

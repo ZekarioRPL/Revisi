@@ -48,7 +48,7 @@ class PresensiController extends Controller
     {
         return view('admin.absen',[
             'title' => "Absen",
-            'absens' => presensi::all(),
+            'absens' => presensi::latest()->get(),
             'shift' => shift::first(),
             'data' => ProfilPerusahaan::where('id', 1)->first()
 
@@ -138,15 +138,17 @@ class PresensiController extends Controller
         $date = new DateTime('now', new DateTimeZone($timezone)); 
         $tanggal = $date->format('Y-m-d');
         $presensi1 = presensi::where('tgl', $tanggal)->first();
-        if (empty($presensi1)) {
             $pre_users = User::where('level', 'karyawan')->get();
             foreach ($pre_users as $pre_user) {
-                $pre = new presensi;
-                $pre->user_id = $pre_user->id;
-                $pre->tgl = $tanggal;
-                $pre->save();
+                $cek = presensi::where('tgl', $tanggal)->where('user_id', $pre_user->id)->first();
+                
+                if (empty($cek)) {
+                    $pre = new presensi;
+                    $pre->user_id = $pre_user->id;
+                    $pre->tgl = $tanggal;
+                    $pre->save();
+                }
             }
-        }
         return redirect('absensi');
     }
 
