@@ -73,7 +73,6 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Name</th>
-                                                    <th>Jabatan</th>
                                                     <th>Jenis Kelamin</th>
                                                     <th>Tanggal Lahir</th>
                                                     <th>Alamat</th>
@@ -88,7 +87,6 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $karyawan->name }}</td>
-                                                    <td>{{ $karyawan->jabatan }}</td>
                                                     @if(empty($karyawan->jenis_kelamin)) 
                                                     <td>Not Inputable!</td>
                                                     @else

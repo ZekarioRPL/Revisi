@@ -105,25 +105,16 @@
                                                 </div>
                                           </div>
                                           <div class="form-group row mb-3">
-                                              <label class="col-lg-4 col-form-label" for="val-jabatan">Jabatan <span class="text-danger">*</span></label>
-                                              <div class="col-lg-6">
-                                                @if ($dt->jabatan)
-                                                <div class="col-lg-8 d-flex" id="dropdown1">
-                                                <input type="text" class="form-control @error('jabatan') is-invalid @enderror" id="val-jabatan" name="jabatan" placeholder="Enter a Jabatan.." value="{{ $dt->jabatan }}">
-                                                <i class="bi bi-caret-left-fill mt-2 ms-2 fs-4" id="df" onclick="dropdown()"></i>
-                                                
-                                                </div>
-                                                @else                                                    
-                                                <select class="form-control @error('jabatan') is-invalid @enderror" id="val-skill" name="jabatan" id="jbtn-dd">
-                                                    <option>Please select</option>
-                                                    <option value="Manager">Manager</option>
-                                                    <option value="Web Developer">Web Developer</option>
-                                                    <option value="Customer Service">Customer Service</option>
-                                                    <option value="Marketing">Marketing</option>
+                                            <label class="col-lg-4 col-form-label" for="jabatan">Jabatan<span class="text-danger">*</span></label>
+                                            <div class="col-lg-6">
+                                                <select class="js-nama_Karyawan form-control" id="jabatan" name="jabatan" data-placeholder="Choose one.." required>
+                                                    <option></option>
+                                                    @foreach( $jabatans as $jabatan)
+                                                        <option value="{{ $jabatan->id }}">{{ $jabatan->jabatan }}</option>
+                                                    @endforeach
                                                 </select>
-                                                @endif
-                                              </div>
-                                          </div>
+                                            </div>
+                                        </div>
                                           <div class="form-group row mb-3">
                                               <label class="col-lg-4 col-form-label"><a data-toggle="modal" data-target="#modal-terms" href="#">Terms &amp; Conditions</a> <span class="text-danger">*</span></label>
                                               <div class="col-lg-8">

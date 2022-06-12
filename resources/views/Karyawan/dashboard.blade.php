@@ -199,7 +199,11 @@
                         <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-title pr">
+                                    @can('bendahara')
+                                    <h4>Gaji</h4>
+                                    @else
                                     <h4>Kehadiran</h4>
+                                    @endcan
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">

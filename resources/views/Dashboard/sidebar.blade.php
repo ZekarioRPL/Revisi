@@ -31,6 +31,12 @@
             </a>
           </li>
           @endif
+          <li class="nav-item">
+            <a class="nav-link {{ ($title === "Gaji") ? 'active' : '' }}" href="/gaji">
+              <span data-feather="dollar-sign"></span>
+              Gaji
+            </a>
+          </li>
           @endcan
           @can('karyawan')
           <li class="nav-item">

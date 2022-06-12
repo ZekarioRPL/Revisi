@@ -26,6 +26,7 @@ class GajiController extends Controller
             'title' => "Gaji",
             'gaji_admins' => gaji::latest()->get(),
             'gaji_karyawans' => gaji::where('karyawan_id', auth()->user()->id)->latest()->get(),
+            'bendaharas' => gaji::latest()->get(),
             'data' => ProfilPerusahaan::where('id', 1)->first()
 
         ]);
@@ -73,13 +74,7 @@ class GajiController extends Controller
     }
     public function nominal(Request $request)
     {
-        $gaji = gaji::where('gaji', '')->latest()->first();
-        $user->gaji = $request->gaji;
-        $user->update();
 
-        $request->session()->flash('bisa', 'Selamat Data Telah Ditambahkan!!');
-        // kembalikan ke halaman post
-        return redirect('/');
     }
 
     // QR

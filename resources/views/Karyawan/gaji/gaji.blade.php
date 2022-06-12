@@ -56,9 +56,9 @@
                       <div class="mail-box">
                         <aside class="sm-side">
                           <div class="user-head">
-                            <a class="inbox-avatar" href="javascript:;">
+                            <!-- <a class="inbox-avatar" href="javascript:;">
                                                         <img src="assets/images/user.jpg" alt="">
-                                                    </a>
+                                                    </a> -->
                             <div class="user-name">
                               <h5><a href="/profils">{{ auth()->user()->name }}</a></h5>
                               <span><a href="/profils">{{ auth()->user()->email }}</a></span>
@@ -167,6 +167,14 @@
                                                   <th>Action</th>
                                               </tr>
                                               @endcan
+                                              @can('bendahara')
+                                              <tr>
+                                                  <th>#</th>
+                                                  <th>Tanggal</th>
+                                                  <th>Nominal</th>
+                                                  <th>Status</th>
+                                              </tr>
+                                              @endcan
                                             </thead>
                                             <tbody>
                                               @can('admin')
@@ -209,6 +217,20 @@
                                                     </a>
                                                   </div>
                                                   </td>
+                                                </tr>
+                                                @endforeach
+                                              @endcan
+                                              @can('bendahara')
+                                                @foreach( $bendaharas as $bendahara )
+                                                <tr>
+                                                  <td>{{ $loop->iteration }}</td>
+                                                  <td>{{ $bendahara->tanggal }}</td>
+                                                  <td>RP. {{ number_format($bendahara->gaji) }}</td>
+                                                  @if( !empty($bendahara->status) )
+                                                  <td><span class="badge badge-success">Dikonfirmasi</span></td>
+                                                  @else
+                                                  <td><span class="badge badge-warning">Belum Dikonfirmasi</span></td>
+                                                  @endif
                                                 </tr>
                                                 @endforeach
                                               @endcan

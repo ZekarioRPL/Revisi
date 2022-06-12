@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use DateTime;
 use DateTimeZone;
 use App\Models\User;
-use App\Models\ProfilPerusahaan;
 use App\Models\shift;
 use App\Models\presensi;
+use App\Models\totalgaji;
 use Illuminate\Http\Request;
+use App\Models\ProfilPerusahaan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StorepresensiRequest;
 use App\Http\Requests\UpdatepresensiRequest;
-use Illuminate\Support\Facades\Hash;
 
 class PresensiController extends Controller
 {
@@ -196,7 +197,8 @@ class PresensiController extends Controller
     public function ubahpw($id){
         return view('admin.ubahpassword', [
             'title' => 'Ubah Password',
-            'dt' => User::where('id', $id)->first()
+            'dt' => User::where('id', $id)->first(),
+            'jabatans' => totalgaji::all()
         ]);
     }
 
@@ -214,7 +216,7 @@ class PresensiController extends Controller
     	{
     		$ub->password = Hash::make($request->password);
     	}
-        $ub->jabatan = $request->jabatan;
+        $ub->jabatan_id = $request->jabatan;
         $ub->update();
 
         return redirect('/karyawan')->with('success', 'Ubah data user sukses');
