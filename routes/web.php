@@ -56,6 +56,7 @@ Route::post('/update', [ProfilController::class, 'update']);
 
 Route::resource('/absensi', PresensiController::class)->middleware('auth');
 route::post('/simpan-masuk',[PresensiController::class,'store']);
+route::get('/oto',[PresensiController::class,'oto']);
 Route::get('/keluar', [PresensiController::class, 'keluar'])->middleware('auth');
 Route::post('/presensi_pulang',[PresensiController::class,'presensipulang'])->name('ubah-presensi');
 Route::get('/kehadiran',[PresensiController::class,'kehadiran'])->middleware('auth');

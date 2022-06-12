@@ -58,7 +58,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <a class="dropdown-item" href="/absensi">
+                <a class="dropdown-item" href="/oto">
                   <span data-feather="log-in"></span>
                   Absen Masuk
                 </a>

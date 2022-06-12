@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\gaji;
+use App\Models\shift;
 use App\Models\totalgaji;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

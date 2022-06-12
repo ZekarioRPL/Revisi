@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use DateTimeZone;
 use App\Models\User;
 use App\Models\shift;
 use App\Models\presensi;
@@ -27,7 +29,7 @@ class ProfilController extends Controller
         $hadir = presensi::where('user_id', auth()->user()->id)->where('status', 'hadir')->get();
         $sakit = presensi::where('user_id', auth()->user()->id)->where('status', 'sakit')->get();
         $izin = presensi::where('user_id', auth()->user()->id)->where('status', 'izin')->get();
-        $tidakhadir = presensi::where('user_id', auth()->user()->id)->where('status', 'tidakhadir')->get();
+        $tidakhadir = presensi::where('user_id', auth()->user()->id)->where('status', null)->get();
         $jumlah_hadir = count($hadir);
         $jumlah_sakit = count($sakit);
         $jumlah_izin = count($izin);
@@ -124,6 +126,20 @@ class ProfilController extends Controller
             'alamat' => 'max:255',
             'username' => 'max:255',
         ]);
+
+        // $timezone = 'Asia/Jakarta'; 
+        // $date = new DateTime('now', new DateTimeZone($timezone)); 
+        // $tanggal = $date->format('Y-m-d');
+        // $presensi1 = presensi::where('tgl', $tanggal)->first();
+        // if (empty($presensi1)) {
+        //     $pre_users = User::where('level', 'karyawan')->get();
+        //     foreach ($pre_users as $pre_user) {
+        //         $pre = new presensi;
+        //         $pre->user_id = $pre_user->id;
+        //         $pre->tgl = $tanggal;
+        //         $pre->save();
+        //     }
+        // }
 
         $user = User::where('id', Auth::user()->id)->first();
         $user->username = $request->username;

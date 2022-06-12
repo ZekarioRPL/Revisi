@@ -18,7 +18,7 @@ class CreatePresensisTable extends Migration
             $table->bigInteger('user_id');
             // $table->foreignId('status')->nullable();
             $table->string('status')->nullable();
-            $table->foreignId('shift_id');
+            $table->foreignId('shift_id')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->date("tgl");  
