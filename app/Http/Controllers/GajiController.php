@@ -45,7 +45,16 @@ class GajiController extends Controller
         return view('Karyawan.gaji.pembayaran', [
             'title' => "Pembayaran",
             'search' => $search->first(),
-            'data' => ProfilPerusahaan::where('id', 1)->first()
+            'data' => ProfilPerusahaan::where('id', 1)->first(),
+            
+        ]);
+    }
+    public function print($id)
+    {
+        return view('Karyawan.gaji.slipGaji', [
+            'title' => "Slip Gaji",
+            'search' => gaji::where('id', $id)->first(),
+            'data' => ProfilPerusahaan::where('id', 1)->first(),
             
         ]);
     }

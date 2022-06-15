@@ -37,15 +37,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function presensi()
-    {
-        return $this->hasMany(Presensi::class);
-    }
-    public function gaji()
-    {
-        return $this->hasMany(gaji::class);
-    }
     public function shift()
     {
         return $this->belongsTo(shift::class);

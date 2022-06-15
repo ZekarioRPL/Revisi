@@ -67,6 +67,7 @@ Route::get('/karyawan',[PresensiController::class,'karyawan'])->middleware('auth
 Route::resource('/gaji', GajiController::class)->middleware('auth');
 Route::get('qrcode/{id}', [GajiController::class, 'generate'])->name('generate');
 Route::get('/pembayaran', [GajiController::class, 'bayar']);
+Route::get('/slipGaji/{id}', [GajiController::class, 'print']);
 Route::post('/pembayaran/{id}', [GajiController::class, 'konfirmasi']);
 // Route::get('/nominalgaji',[GajiController::class,'nominalgaji'])->middleware('auth');
 // route::post('/nominal',[GajiController::class,'nominal']);

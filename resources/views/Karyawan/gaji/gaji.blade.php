@@ -154,7 +154,7 @@
                                                   <th>Nominal</th>
                                                   <th>Status</th>
                                                   <th>Tanggal</th>
-                                                  <th>QR</th>
+                                                  <th>Action</th>
                                               </tr>
                                               @endcan
                                               
@@ -173,6 +173,7 @@
                                                   <th>Tanggal</th>
                                                   <th>Nominal</th>
                                                   <th>Status</th>
+                                                  <th>Action</th>
                                               </tr>
                                               @endcan
                                             </thead>
@@ -195,6 +196,14 @@
                                                       <span data-feather="arrow-right-circle" ></span>
                                                     </a>
                                                   </div>
+                                                  @if( !empty($gaji_karyawan->status) )
+                                                  <div class="btn-group ml-1">
+                                                    <a class="btn mini btn-secondary" href="/slipGaji/{{ $gaji_admin->id }}">
+                                                    <span data-feather="printer" ></span>
+                                                    </a>
+                                                  </div>
+                                                  @else
+                                                  @endif
                                                   </td>
                                                 </tr>
                                                 @endforeach
@@ -216,6 +225,14 @@
                                                       <span data-feather="arrow-right-circle" ></span>
                                                     </a>
                                                   </div>
+                                                  @if( !empty($gaji_karyawan->status) )
+                                                  <div class="btn-group ml-1">
+                                                    <a class="btn mini btn-secondary" href="/slipGaji/{{ $gaji_karyawan->id }}">
+                                                    <span data-feather="printer" ></span>
+                                                    </a>
+                                                  </div>
+                                                  @else
+                                                  @endif
                                                   </td>
                                                 </tr>
                                                 @endforeach
@@ -231,6 +248,17 @@
                                                   @else
                                                   <td><span class="badge badge-warning">Belum Dikonfirmasi</span></td>
                                                   @endif
+                                                  <td>
+                                                  @if( !empty($gaji_karyawan->status) )
+                                                  <div class="btn-group ml-1">
+                                                    <a class="btn mini btn-secondary" href="/slipGaji/{{ $bendahara->id }}">
+                                                    <span data-feather="printer" ></span>
+                                                    </a>
+                                                  </div>
+                                                  @else
+                                                  @endif
+
+                                                  </td>
                                                 </tr>
                                                 @endforeach
                                               @endcan

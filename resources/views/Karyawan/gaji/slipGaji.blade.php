@@ -1,26 +1,43 @@
-@extends('Dashboard.DashboardMain')
-    <!-- ================= Favicon ================== -->
-    <!-- Standard -->
-    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
-    <!-- Retina iPad Touch Icon-->
-    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
-    <!-- Retina iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
-    <!-- Standard iPad Touch Icon-->
-    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
-    <!-- Standard iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="shortcut icon" href="{{ '/storage/' . $data->image }}">
+    <title>{{ $title }}</title>
 
-    <!-- Styles -->
-    <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
-    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/lib/helper.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+
+    <!-- Bootstrap core CSS -->
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 
     
-@section('container')
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/css/DashboardMain.css">
+    <link rel="stylesheet" href="/css/dashboard.rtl.css">
+  </head>
+  <body onload="window.print()">
 <div class="content-wrap">
     <div class="main">
       <div class="container-fluid">
@@ -35,12 +52,6 @@
           <div class="col-lg-4 p-l-0 title-margin-left">
             <div class="page-header">
               <div class="page-title">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
-                  </li>
-                  <li class="breadcrumb-item active">{{ $title }}</li>
-                </ol>
               </div>
             </div>
           </div>
@@ -58,70 +69,50 @@
         
         <!-- /# row -->
         <!-- content -->
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-title">
-                    <h4>{{ $title }}</h4>
-                    
-                </div>
-                <div class="card-body">
-                    <div class="basic-form">
-                        <form action="/pembayaran">
-                            <div class="form-group">
-                                <p class="text-muted m-b-15 f-s-12">Input <code>Code Gaji </code>di bawah Sini atau<code> Scan Code QR</code></p>
-                                <div class="input-group input-group-rounded">
-                                    <input type="text" placeholder="Input Kode / QR" name="search" class="form-control" value="{{ request('search') }}">
-                                    <span class="input-group-btn"><button class="btn btn-primary btn-group-right" type="submit"><i class="ti-search"></i></button></span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- content - End -->
-
-        @if(!empty(request('search')))
-        @if (!empty($search))
+<a href="/gaji">Kembali</a>
         <!-- Content - slip Gaji -->
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-title">
-                    <h4>Slip Gaji</h4>
+                <div class="card-title m-3">
+                    <h4 class="text-center">Slip Gaji</h4>
                     <hr>
                 </div>
                 <!-- Slip Gaji -->
-                    <div class="card-body pt-0 mt-0 ">
+                    <div class="card-body pt-0 mt-0 ms-5 me-5">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div id="invoice" class="effect2 ">
-                                    <div id="invoice-top">
+                                    <div class="row d-flex">
                                     <!-- <div class="clientlogo">  </div> -->
+                                    <div class="col-md-3">
+
                                         <div class="invoice-info">
-                                            <h2>{{ $data->nama_perusahaan }}</h2>
+                                            <h3>{{ $data->nama_perusahaan }}</h3>
                                             <p>{{ $data->alamat }}<br>
                                                 <br>
                                         </div>
+                                    </div>
                                         <!--End Info-->
-                                        <div class="title">
-                                            <h4>Tanggal</h4>
-                                            
-                                            <p>{{ $search->tanggal }}<br> {{ $search->updated_at->diffForHumans() }}
+                                        <div class="col-md-8">
 
-                                            
-                                            </p>
+                                            <div class="text-end">
+                                                <h4>Tanggal</h4>
+                                                <p>{{ $search->tanggal }}<br> {{ $search->updated_at->diffForHumans() }}
+                                                </p>
+                                            </div>
                                         </div>
                                         <!--End Title-->
                                     </div>
                                     <!--End InvoiceTop-->
         
         
-        
+        <br>
                                     <div id="invoice-mid">
         
                                         <!-- <div class="clientlogo">  </div> -->
                                         <div class="invoice-info">
-                                            <h2> Name : {{ $search->karyawan->name }}</h2>
+                                            <h3> Name : {{ $search->karyawan->name }}</h3>
                                             <p>Email : {{ $search->karyawan->email }}<br> Alamat : {{ $search->karyawan->alamat }}
                                                 <br>
                                                 @if($search->karyawan->jabatan) 
@@ -132,7 +123,7 @@
                                         <div id="project">
                                             <h2>Deskripsi gaji</h2>
                                         </div>
-        
+        <br>
                                     </div>
                                     <!--End Invoice Mid-->
         
@@ -171,16 +162,16 @@
                                                     <tr></tr>
                                                     <tr class="tabletitle">
                                                         <td class="table-item">
-                                                            <h2>Jumlah Gaji</h2>
+                                                            <h3>Jumlah Gaji</h3>
                                                         </td>
                                                         <td class="Hours">
-                                                            <h2>:</h2>
+                                                            <h3>:</h3>
                                                         </td>
                                                         <td class="Rate">
-                                                            <h2>Rp. </h2>
+                                                            <h3>Rp. </h3>
                                                         </td>
                                                         <td class="subtotal">
-                                                            <h2>{{ $search->gaji }}</h2>
+                                                            <h3>{{ $search->gaji }}</h3>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -201,9 +192,7 @@
                                             </div>
                                         </form>
                                         @else
-                                        <a href="">Print</a>
                                         @endcan
-                                        @endif
                                                     
 
                                     </div>
@@ -217,8 +206,6 @@
             </div>
         </div>
         <!-- Content - slip Gaji -End... -->
-        @endif
-
       </div>
     </div>
 </div>
@@ -226,20 +213,10 @@
 
 
 
-<!-- javascript -->
-
-    <!-- jquery vendor -->
-    <script src="assets/js/lib/jquery.min.js"></script>
-    <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
-    <!-- nano scroller -->
-    <script src="assets/js/lib/menubar/sidebar.js"></script>
-    <script src="assets/js/lib/preloader/pace.min.js"></script>
-    <!-- sidebar -->
-    
-    <!-- bootstrap -->
-
-
-    <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
-    <!-- scripit init-->
-<!-- /end - javascript -->
-@endsection
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+      <script src="/js/DashboardMain.js"></script>
+</body>
+</html>
